@@ -1,0 +1,43 @@
+{
+  "name": "angular-semantic-ui",
+  "description": "Angular - AngularJS directives for Semantic UI.",
+  "version": "0.0.1",
+  "keywords": [
+    "angular",
+    "ui",
+    "semantic"
+  ],
+  "homepage": "http://0xAX.github.io/angular-semantic-ui",
+  "bugs": "https://github.com/angularify/angular-semantic-ui",
+  "author": {
+    "name": "Alex Kuleshov",
+    "url": "https://github.com/0xAX"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angularify/angular-semantic-ui.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/angularify/angular-semantic-ui/blob/master/LICENSE.md"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-ngdocs": "~0.1.1",
+    "grunt-conventional-changelog": "~0.1.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-uglify": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "karma-phantomjs-launcher" : "latest",
+    "grunt-html2js": "~0.2.0",
+    "grunt-karma": "~0.4.4",
+    "node-markdown": "0.1.1",
+    "semver": "~2.2.0",
+    "shelljs": "~0.2.0"
+  }
+}
