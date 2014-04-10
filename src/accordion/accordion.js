@@ -15,9 +15,11 @@ angular.module('angularify.semantic.accordion', [])
         return $scope.accordions;
     }
 
-    this.closeAll = function() {
+    this.closeAll = function(scope) {
         var i = 0;
         var isCloseAll = false;
+
+        var index = $scope.accordions.indexOf(scope);
 
         for (i in $scope.accordions){
             if ($scope.accordions[i].close)
@@ -26,8 +28,10 @@ angular.module('angularify.semantic.accordion', [])
 
         if (isCloseAll == true){
             for (i in $scope.accordions){
-                $scope.accordions[i].class = 'title';
-                $scope.accordions[i].content_class = 'content'; 
+                if (i == index){} else {
+                    $scope.accordions[i].class = 'title';
+                    $scope.accordions[i].content_class = 'content'; 
+                }
             }
 
             return true;
@@ -112,20 +116,15 @@ angular.module('angularify.semantic.accordion', [])
             //
             scope.click_on_accordeon_tab = function(){
                 // class all first of all
-                if (AccordionController.closeAll() == true)
-                    scope.isOpen = false;
-                
-                // change current state
-                scope.isOpen = !scope.isOpen;
+                AccordionController.closeAll(scope)
 
-                if (scope.isOpen == true){
+                if (scope.content_class == 'active content') {
+                    scope.class = 'title';
+                    scope.content_class = 'content';
+                } else {
                     scope.class = 'active title';
-                    scope.content_class = 'active content';
-                    return;
-                }
-
-                scope.class = 'title';
-                scope.content_class = 'content';
+                    scope.content_class = 'active content';           
+                }     
             }
         }
     }
