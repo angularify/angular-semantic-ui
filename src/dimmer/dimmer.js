@@ -18,12 +18,12 @@ angular.module('angularify.semantic.dimmer', [])
                   "</div>",
         link : function(scope, element, attrs, ngModel) {
 
-            if (scope.show == false && scope.show == undefined){
-                scope.show = false;
-                scope.dimmer_class = 'ui page dimmer';
-            }
-            else if (scope.show == true) {
+            if (scope.show == true) {
                 scope.dimmer_class = 'ui page active dimmer';
+            }
+            else {
+                scope.show = false;
+                scope.dimmer_class = 'ui page disable dimmer';
             }
 
             //
