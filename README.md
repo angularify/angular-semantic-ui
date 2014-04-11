@@ -7,6 +7,7 @@ Directives
 ----------------------
 
   * accordion
+  * checkbox
 
 Building
 ----------------------
