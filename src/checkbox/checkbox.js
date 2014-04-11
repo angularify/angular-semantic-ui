@@ -7,7 +7,6 @@ angular.module('angularify.semantic.checkbox', [])
         restrict: 'E',
         replace: true,
         transclude: true,
-        require:"ngModel",
         scope :{
             type: "@",
             size: "@",

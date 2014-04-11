@@ -1,4 +1,3 @@
-angular.module('angularify.semantic', [
-	'angularify.semantic.accordion',
-	'angularify.semantic.checkbox'
-	]);
+angular.module('angularify.semantic', ['angularify.semantic.accordion',
+	                                   'angularify.semantic.checkbox',
+	                                   'angularify.semantic.dimmer']);
