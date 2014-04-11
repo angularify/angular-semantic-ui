@@ -6,7 +6,7 @@ angularify.semantic.accordion
 Usage
 -------------------------------
 
-```
+```html
 <accordion close="true">
   <accordion-group  title="First tab" open=true>
     <p>Some text in first tab</p>
