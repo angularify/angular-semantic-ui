@@ -11,31 +11,34 @@
             width: 600px;
             margin-top: 40px;
         }
+        #gist10492760 {
+          width: 600px;
+          margin: 0 auto;
+        }
+        tbody {
+          text-align: left;
+        }
     </style>
     <div style="display: table; margin: 0 auto;">
         <section style='margin-top: 200px;'>
-            <accordion>
-                <accordion-group  title="First tab" open=true>
-                  <p>Some text in first tab</p>
-                </accordion-group> 
-                <accordion-group title="Second tab">
-                  <p>Some text in second tab</p>
-                </accordion-group> 
-            </accordion>
+
+          <div id="content">
+            <page-dimmer ng-model="show_dimmer" show="false">
+              <script src="https://gist.github.com/0xAX/10492760.js"></script>
+              <div class="ui buttons">
+                <div class="ui button" ng-click="cancel()">Cancel</div>
+                <div class="or"></div>
+                <div class="ui positive button" ng-click="github()">Github</div>
+              </div>
+            </page-dimmer>
+          </div>
+
+          <div class="ui button" ng-click="dimmer()">
+            Open dimmer
+          </div>
         </section>
-        
-        <script src="https://gist.github.com/0xAX/10413460.js"></script>
 
-        <p>Accordion attributes:</p>
-        <ul>
-            <li>close - close all accordions on click if true.</li>
-        </ul>
-
-        <p>accordion-group attributes:</p>
-        <ul>
-            <li>title - accordion heading title.</li>
-            <li>open - accordion opened if open is true.</li>
-        </ul>
+        <p style="margin-left: -30px;">Dimmer attributes: show - true || false<ul></p>
     </div>
 
     <div class="ui black huge launch right attached toggle button" style="width: 70px; margin-left: -10px; margin-top:-40px; top: -200px; position: relative;">

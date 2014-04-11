@@ -13,28 +13,21 @@
         }
     </style>
     <div style="display: table; margin: 0 auto;">
-        <section style='margin-top: 200px;'>
-            <accordion>
-                <accordion-group  title="First tab" open=true>
-                  <p>Some text in first tab</p>
-                </accordion-group> 
-                <accordion-group title="Second tab">
-                  <p>Some text in second tab</p>
-                </accordion-group> 
-            </accordion>
+        <section style='margin-top: 200px; margin-left: 240px;'>
+              <checkbox checked="false" ng-model="aa">Alex</checkbox>
+              <br/>
+              <checkbox checked="true" ng-model="bb">0xAX</checkbox>
+              <br/>
+              <checkbox ng-model="cc">User</checkbox>
         </section>
-        
-        <script src="https://gist.github.com/0xAX/10413460.js"></script>
+        <script src="https://gist.github.com/0xAX/10492268.js"></script>
 
-        <p>Accordion attributes:</p>
-        <ul>
-            <li>close - close all accordions on click if true.</li>
-        </ul>
+        Checkbox attributes:
 
-        <p>accordion-group attributes:</p>
         <ul>
-            <li>title - accordion heading title.</li>
-            <li>open - accordion opened if open is true.</li>
+            <li>type - standard || slider || toggle || undefined</li>
+            <li>size - large || huge || undefined</li>
+            <li>checked - true || false</li>
         </ul>
     </div>
 
