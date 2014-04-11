@@ -30,4 +30,6 @@ TODO
 -------------------------------
 
  1. Add transition.
- 2. More tests.
+ 2. Add basic accordion.
+ 3. Add fluid-accordion.
+ 3. More tests.
