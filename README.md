@@ -6,8 +6,8 @@ angular-semantic-ui
 Directives
 ----------------------
 
-  * accordion
-  * checkbox
+  * [accordion](https://github.com/angularify/angular-semantic-ui/tree/master/src/accordion)
+  * [checkbox](https://github.com/angularify/angular-semantic-ui/tree/master/src/checkbox)
 
 Building
 ----------------------
