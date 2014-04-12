@@ -9,6 +9,7 @@ Directives
   * [accordion](https://github.com/angularify/angular-semantic-ui/tree/master/src/accordion)
   * [checkbox](https://github.com/angularify/angular-semantic-ui/tree/master/src/checkbox)
   * [dimmer](https://github.com/angularify/angular-semantic-ui/tree/master/src/dimmer)
+  * [dropdown](https://github.com/angularify/angular-semantic-ui/tree/master/src/dropdown)
 
 Building
 ----------------------

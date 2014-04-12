@@ -1,8 +1,6 @@
 var dropdownApp = angular.module('dropdownApp', ['angularify.semantic.dropdown']);
 
 function RootCtrl ($scope) {
-	$scope.hello = function(){
-		alert('hello');
-	}
+    $scope.dropdown_model = 'item3';
 }
 
