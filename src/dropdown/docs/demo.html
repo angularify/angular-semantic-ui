@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html ng-app="dropdownApp">
+<head>
+  <meta charset="utf-8" />
+  <title>Semantic UI + Angular.JS</title>
+  <link href="../../../bower_components/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" /> 
+</head>
+<body ng-controller="RootCtrl">
+    <dropdown title="my dropdown" ng-model="dropdown_model" open="true">
+      <dropdown-group>item1</dropdown-group>
+      <dropdown-group>item2</dropdown-group>
+      <dropdown-group>item3</dropdown-group>
+      <dropdown-group>item4</dropdown-group>
+    </dropdown>
+    <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
+    <script src="../../angularify.semantic.js" type="text/javascript"></script>
+    <script src="../dropdown.js" type="text/javascript"></script>
+    <script src="controllers.js" type="text/javascript"></script>
+</body>
+</html>
