@@ -59,4 +59,4 @@ Contribution
 TODO
 -------------------------------
 
-1. Add different dropdown types.
+1. Add different modal types.
