@@ -10,6 +10,7 @@ Directives
   * [checkbox](https://github.com/angularify/angular-semantic-ui/tree/master/src/checkbox)
   * [dimmer](https://github.com/angularify/angular-semantic-ui/tree/master/src/dimmer)
   * [dropdown](https://github.com/angularify/angular-semantic-ui/tree/master/src/dropdown)
+  * [modal](https://github.com/angularify/angular-semantic-ui/tree/master/src/modal)
 
 Building
 ----------------------

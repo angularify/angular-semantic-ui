@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html ng-app="modalApp">
+<head>
+  <meta charset="utf-8" />
+  <title>Semantic UI + Angular.JS</title>
+  <link href="../../../bower_components/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" /> 
+</head>
+<body ng-controller="RootCtrl">
+    <modal ng-model="show_modal">
+      <i class="close icon" ng-click="close_modal()"></i>
+      <div class="header">
+        Change Your Homepage
+      </div>
+      <div class="content">
+        <div class="left">
+          <i class="home icon"></i>
+        </div>
+        <div class="right">
+          <p>Are you sure you want to change your homepage to <b>Poodle.com</b>?</p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="two fluid ui buttons">
+          <div class="ui negative labeled icon button">
+            <i class="remove icon"></i>
+            No
+          </div>
+          <div class="ui positive right labeled icon button">
+            Yes
+            <i class="checkmark icon"></i>
+          </div>
+        </div>
+      </div>
+    </modal>
+    <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
+    <script src="../../angularify.semantic.js" type="text/javascript"></script>
+    <script src="../modal.js" type="text/javascript"></script>
+    <script src="controllers.js" type="text/javascript"></script>
+</body>
+</html>
