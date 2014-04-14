@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html ng-app='App'>
+    <head>
+        <title>angular-ui-semantic - angular.js directives for semantic ui</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link href="../css/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body ng-controller="RootController">
+    <style>
+        #gist10413460{
+            width: 600px;
+            margin-top: 40px;
+        }
+
+        #gist10644913{
+          margin-left: -350px;
+        }
+
+        #gist10645039{
+          margin-left: -350px;
+        }
+    </style>
+    <div style="display: table; margin: 0 auto;">
+        <section style='margin-top: 200px; margin-bottom: 20px; margin-left: 320px;'>
+          <raiting id="my-raiting" size="large" type="star" ng-model="raiting"></raiting>
+        </section>
+        <script src="https://gist.github.com/0xAX/709d909af4543e138b17.js"></script>
+    </div>
+
+    <div class="ui black huge launch right attached toggle button" ng-click="show_sidebar()" id="sidebar_button" style="width: 70px; margin-left: -10px; margin-top:-240px; top: 0px; position: relative;">
+        <i class="icon list layout"></i>
+        <span class="text" style="display: none;">Menu</span>
+    </div>
+
+    <sidebar ng-model="sidebar" ng-mouseleave="hide_sidebar()">
+      <sidebar-item href="overview.html"  title="Installing"></sidebar-item>
+      <sidebar-item href="accordion.html" title="Accordion"></sidebar-item>
+      <sidebar-item href="checkbox.html"  title="Checkbox"></sidebar-item>
+      <sidebar-item href="dimmer.html"    title="Dimmer"></sidebar-item>
+      <sidebar-item href="dropdown.html"  title="DropDown"></sidebar-item>
+      <sidebar-item href="modal.html"     title="Modal"></sidebar-item>
+      <sidebar-item href="popup.html"     title="Popup"></sidebar-item>
+      <sidebar-item href="raiting.html"   title="Raiting"></sidebar-item>
+      <sidebar-item href="sidebar.html"   title="SideBar"></sidebar-item>
+    </sidebar>
+
+    
+    <script src="../js/angular.js" type="text/javascript"></script>
+    <script src="../js/app.js" type="text/javascript"></script>
+    <script src="../js/controllers.js" type="text/javascript"></script>
+    <script src="../js/angular-semantic-ui-0.0.1.js" type="text/javascript"></script>
+    </body>
+</html>

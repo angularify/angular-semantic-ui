@@ -21,10 +21,16 @@
         }
     </style>
     <div style="display: table; margin: 0 auto;">
-        <section style='margin-top: 200px; margin-bottom: 20px; margin-left: 200px;'>
-          <code>This sidebar made with angular-semantic-ui</code>         
+        <section style='margin-top: 200px;'>
+          <dropdown title="my dropdown" ng-model="dropdown_model" open="true" style="top: 45px; margin-left: -100px;">
+            <dropdown-group>item1</dropdown-group>
+            <dropdown-group>item2</dropdown-group>
+            <dropdown-group>item3</dropdown-group>
+            <dropdown-group>item4</dropdown-group>
+        </dropdown>
+        <br/>
+        <script src="https://gist.github.com/0xAX/a697423d32f94e0382df.js"></script>
         </section>
-        <script src="https://gist.github.com/0xAX/f381c8b014fb8452e96d.js"></script>
     </div>
 
     <div class="ui black huge launch right attached toggle button" ng-click="show_sidebar()" id="sidebar_button" style="width: 70px; margin-left: -10px; margin-top:-240px; top: -200px; position: relative;">

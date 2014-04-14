@@ -19,15 +19,16 @@
     
     </section>
     
-    <sidebar ng-model="sidebar">
-      <sidebar-item href="templates/accordion" title="Home"></sidebar-item>
-      <sidebar-item href="templates/" title="Home2"></sidebar-item>
-      <sidebar-item href="templates/" title="Home3"></sidebar-item>
-      <sidebar-item href="templates/" title="Home"></sidebar-item>
-      <sidebar-item href="templates/" title="Home2"></sidebar-item>
-      <sidebar-item href="templates/" title="Home3"></sidebar-item>
-      <sidebar-item href="templates/" title="Home"></sidebar-item>
-      <sidebar-item href="templates/" title="Home2"></sidebar-item>
+    <sidebar ng-model="sidebar" ng-mouseleave="hide_sidebar()">
+      <sidebar-item href="templates/overview.html"  title="Installing"></sidebar-item>
+      <sidebar-item href="templates/accordion.html" title="Accordion"></sidebar-item>
+      <sidebar-item href="templates/checkbox.html"  title="Checkbox"></sidebar-item>
+      <sidebar-item href="templates/dimmer.html"    title="Dimmer"></sidebar-item>
+      <sidebar-item href="templates/dropdown.html"  title="DropDown"></sidebar-item>
+      <sidebar-item href="templates/modal.html"     title="Modal"></sidebar-item>
+      <sidebar-item href="templates/popup.html"     title="Popup"></sidebar-item>
+      <sidebar-item href="templates/raiting.html"   title="Raiting"></sidebar-item>
+      <sidebar-item href="templates/sidebar.html"   title="SideBar"></sidebar-item>
     </sidebar>
 
     <div class="ui black huge launch right attached toggle button" ng-click="show_sidebar()" id="sidebar_button" style="width: 70px; margin-left: -10px;">

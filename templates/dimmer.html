@@ -41,35 +41,23 @@
         <p style="margin-left: -30px;">Dimmer attributes: show - true || false<ul></p>
     </div>
 
-    <div class="ui black huge launch right attached toggle button" style="width: 70px; margin-left: -10px; margin-top:-40px; top: -200px; position: relative;">
+    <div class="ui black huge launch right attached toggle button" ng-click="show_sidebar()" id="sidebar_button"  style="width: 70px; margin-left: -10px; margin-top:-40px; top: -200px; position: relative;">
         <i class="icon list layout"></i>
         <span class="text" style="display: none;">Menu</span>
     </div>
 
-    <div class="ui red vertical demo sidebar menu">
-      <a class="item" href="../index.html">
-        <i class="home icon"></i>
-        Main
-      </a>
-      <a class="item" href="overview.html">
-        <i class="home icon"></i>
-        Build
-      </a>
-      <a class="item" href="accordion.html">
-        <i class="code icon"></i>
-        Accordion
-      </a>
-      <a class="item" href="checkbox.html">
-        <i class="code icon"></i>
-        Checkbox
-      </a>
-      <a class="item" href="dimmer.html">
-        <i class="code icon"></i>
-        Dimmer
-      </a>
-    </div>
-    <script src="../js/jquery.min.js" type="text/javascript"></script>
-    <script src="../js/sidebar.js" type="text/javascript"></script>
+    <sidebar ng-model="sidebar" ng-mouseleave="hide_sidebar()">
+      <sidebar-item href="overview.html"  title="Installing"></sidebar-item>
+      <sidebar-item href="accordion.html" title="Accordion"></sidebar-item>
+      <sidebar-item href="checkbox.html"  title="Checkbox"></sidebar-item>
+      <sidebar-item href="dimmer.html"    title="Dimmer"></sidebar-item>
+      <sidebar-item href="dropdown.html"  title="DropDown"></sidebar-item>
+      <sidebar-item href="modal.html"     title="Modal"></sidebar-item>
+      <sidebar-item href="popup.html"     title="Popup"></sidebar-item>
+      <sidebar-item href="raiting.html"   title="Raiting"></sidebar-item>
+      <sidebar-item href="sidebar.html"   title="SideBar"></sidebar-item>
+    </sidebar>
+    
     <script src="../js/angular.js" type="text/javascript"></script>
     <script src="../js/app.js" type="text/javascript"></script>
     <script src="../js/controllers.js" type="text/javascript"></script>
