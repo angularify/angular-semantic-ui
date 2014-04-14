@@ -6,6 +6,10 @@ function RootController ($scope, $window) {
         $scope.sidebar = !$scope.sidebar;
     }
 
+    $scope.hide_sidebar = function(){
+        $scope.sidebar = false;
+    }
+
     $scope.dimmer = function() {
         $scope.show_dimmer = true;
     }
@@ -16,5 +20,13 @@ function RootController ($scope, $window) {
 
     $scope.github = function() {
         window.location = 'https://github.com/angularify/angular-semantic-ui';
+    }
+
+    $scope.modal = function(){
+        $scope.show_modal = true;
+    }
+
+    $scope.close_modal = function(){
+        $scope.show_modal = false;
     }
 }
