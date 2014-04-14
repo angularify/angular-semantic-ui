@@ -19,8 +19,8 @@ module.exports = function(grunt) {
         src: ['src/angularify.semantic.js', 'src/accordion/accordion.js',
               'src/checkbox/checkbox.js',   'src/dimmer/dimmer.js',
               'src/dropdown/dropdown.js',   'src/modal/modal.js',
-              'src/popup/popup.js',         'src/raiting/raitng.js',
-              'src/sidebar/sidebar.js'
+              'src/popup/popup.js',         
+              'src/sidebar/sidebar.js', 'src/raiting/raiting.js'
              ],
         dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
       }
