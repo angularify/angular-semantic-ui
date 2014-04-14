@@ -15,6 +15,8 @@ Directives
   * [raiting](https://github.com/angularify/angular-semantic-ui/tree/master/src/raiting)
   * [sidebar](https://github.com/angularify/angular-semantic-ui/tree/master/src/sidebar)
 
+**IMPORTANT** angular-semantic-ui is only 0.0.1, and not production ready.
+
 Building
 ----------------------
 
