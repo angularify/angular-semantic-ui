@@ -67,10 +67,10 @@ angular.module('angularify.semantic.sidebar', [])
             icon:  "@",
             href:  "@"
         },
-        template:  '<a href="{{href}}" class="{{item_class}}"><i class="{{icon_class}}"></i>{{title}}</a>',
+        template:  '<a class="{{item_class}}"><i class="{{icon_class}}"></i>{{title}}</a>',
         link: function(scope, element, attrs, SideBarController){
-            if (scope.href == 'undefined')
-                scope.href = '/#';
+            //if (scope.href == 'undefined')
+            //    scope.href = '/#';
                  
             // set up item class
             scope.item_class = 'item';
@@ -81,7 +81,7 @@ angular.module('angularify.semantic.sidebar', [])
             if (scope.icon == undefined)
                 scope.icon_class = 'home icon';
             else
-                scope.icon_class = scioe.icon + ' icon';
+                scope.icon_class = scope.icon + ' icon';
 
             // add new sidebar item
             SideBarController.add_sidebar_items(scope);
