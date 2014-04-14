@@ -26,6 +26,11 @@ function RootCtrl ($scope) {
 }
 ```
 
+`dimmer` - can have following attributes:
+
+  * `ng-model` - angular model;
+  * `show`     - is current dimmer showed.
+
 Contribution
 -------------------------------
 

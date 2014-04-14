@@ -14,17 +14,9 @@ Usage
            size: 'small'}"></i>
 ```
 
-`position` - can be:
+`position` - can be: `bottom`, `top`, `right` or `left`.
 
-  * bottom
-  * top
-  * right
-  * left
-
-`size` - can be:
-
-  * small
-  * large
+`size` - can be: `small` or `large`.
 
 Contribution
 -------------------------------

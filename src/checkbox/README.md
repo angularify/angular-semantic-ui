@@ -16,6 +16,13 @@ Usage
 </div>
 ```
 
+`checkbox` - can have following properties:
+
+  * `type`:   - `standard` || `slider` || `toggle` || `undefined` - the type of checkbox;
+  * `size`:   - `large` || `huge` || `undefined` - the size of the current checkbox;
+  * `checked` - `true` || `false`, checked checkbox or not;
+  * `ng-model`   - angular model.
+
 Contribution
 -------------------------------
 

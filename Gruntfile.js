@@ -11,32 +11,37 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-ngdocs');
 
   grunt.initConfig({
-  	dist: 'dist',
-  	filename: 'angular-semantic-ui',
-  	pkg: grunt.file.readJSON('package.json'),
-  	concat: {
-  		js:{
-  		  src: ['src/angularify.semantic.js', 'src/accordion/accordion.js'],
-  		  dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
-  		}
-  	},
-  	uglify: {
-  		dist:{
-  			src:['<%= dist %>/<%= filename %>-<%= pkg.version %>.js'],
+    dist: 'dist',
+    filename: 'angular-semantic-ui',
+    pkg: grunt.file.readJSON('package.json'),
+    concat: {
+      js:{
+        src: ['src/angularify.semantic.js', 'src/accordion/accordion.js',
+              'src/checkbox/checkbox.js',   'src/dimmer/dimmer.js',
+              'src/dropdown/dropdown.js',   'src/modal/modal.js',
+              'src/popup/popup.js',         'src/raiting/raitng.js',
+              'src/sidebar/sidebar.js'
+             ],
+        dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
+      }
+    },
+    uglify: {
+      dist:{
+        src:['<%= dist %>/<%= filename %>-<%= pkg.version %>.js'],
             dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
-  		}
-  	},
-  	karma: {
-  		options: {
-        	configFile: 'karma.conf.js'
-      	},
-      	watch: {
-        	background: true
-      	},
-      	continuous: {
-        	singleRun: true
-      	},
-  	}
+      }
+    },
+    karma: {
+      options: {
+          configFile: 'karma.conf.js'
+        },
+        watch: {
+          background: true
+        },
+        continuous: {
+          singleRun: true
+        },
+    }
   });
 
   grunt.registerTask('build', ['concat:js', 'uglify']);

@@ -15,6 +15,12 @@ Usage
 </dropdown>
 ```
 
+`dropdown` - can have following attributes:
+
+  * `title` - title of the dropdown;
+  * `ng-model` - angular model;
+  * `open` - `true` || `false`. is current dropdown opened.
+
 Contribution
 -------------------------------
 

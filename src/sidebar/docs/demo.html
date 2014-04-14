@@ -1,16 +1,20 @@
 <!DOCTYPE HTML>
-<html ng-app="popupApp">
+<html ng-app="sidebarApp">
 <head>
   <meta charset="utf-8" />
   <title>Semantic UI + Angular.JS</title>
   <link href="../../../bower_components/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" /> 
 </head>
 <body ng-controller="RootCtrl">
-	  <i class="heart circular icon hover" style="margin-left: 100px; margin-top: 200px;" popup="{title : 'Hello this is content', content : 'Popup content', position: 'bottom', size: 'small'}"></i>
-
+    <button class="ui btn" style="float: right;" ng-click="side_bar()">Show sidebar</button>
+    <sidebar ng-model="show_sidebar">
+      <sidebar-item title="Home"></sidebar-item>
+      <sidebar-item title="Home2"></sidebar-item>
+      <sidebar-item title="Home3"></sidebar-item>
+    </sidebar>
     <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
     <script src="../../angularify.semantic.js" type="text/javascript"></script>
-    <script src="../popup.js" type="text/javascript"></script>
+    <script src="../sidebar.js" type="text/javascript"></script>
     <script src="controllers.js" type="text/javascript"></script>
 </body>
 </html>

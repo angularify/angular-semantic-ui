@@ -17,6 +17,15 @@ Usage
 </accordion>
 ```
 
+`<accordion>` - can have following attributes:
+
+  * `close` - true || false, close all tabs if it is `true`.
+
+`<accordion-group>` - can have following attributes:
+
+  * `title` - tab's title;
+  * `open`  - `true` || `false`, current `accordion-group` will be open.
+
 Contribution
 -------------------------------
 
