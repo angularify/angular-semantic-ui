@@ -57,6 +57,9 @@ angular.module('angularify.semantic.raiting', [])
             // Handle mouse enter
             //
             scope.mouse_enter = function(icon_index){
+                if (checked == true)
+                    return;
+
                 var i = 1;
                 for (i; i <= icon_index; i++){
                     document.getElementById(scope.id + i).className = 'icon active';
@@ -69,7 +72,6 @@ angular.module('angularify.semantic.raiting', [])
             // Handle mouse leave
             //
             scope.mouse_leave = function(icon_index){
-                console.log(checked)
                 if (checked == true)
                     return;
 
@@ -90,7 +92,7 @@ angular.module('angularify.semantic.raiting', [])
                     document.getElementById(scope.id + i).className = 'icon active';
                 }
 
-                if (mode == undefined)
+                if (icon_index !== 0)
                     checked = true;
 
                 return;
@@ -100,7 +102,7 @@ angular.module('angularify.semantic.raiting', [])
             // Watch for model
             //
             scope.$watch('model', function(val){
-                scope.click(val, 'from_model')
+                scope.click(val)
             });
         }
     }

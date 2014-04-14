@@ -1,5 +1,5 @@
 var raitingApp = angular.module('raitingApp', ['angularify.semantic.raiting']);
 
 function RootCtrl ($scope) {
-    $scope.raiting = 1;
+    //$scope.raiting = 1;
 }
