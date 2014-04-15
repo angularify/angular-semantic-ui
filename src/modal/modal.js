@@ -10,26 +10,12 @@ angular.module('angularify.semantic.modal', [])
         scope: {
             model: '=ngModel'
         },
-        template: "<div class=\"{{ modal_class }}\">" + 
-                    "<div class=\"ui test modal transition visible active\" style=\"margin-top: -189px;\" ng-transclude>" +
+        template: "<div class=\"ui dimmer page\" ng-class=\"{ active: model }\">" + 
+                    "<div class=\"ui test modal transition visible\" style=\"margin-top: -189px;\"  ng-transclude>" +
                     "</div>" +
                   "</div>",
         link: function (scope, element, attrs) {
-            if (scope.model == true) {
-                scope.modal_class = 'ui dimmer page active';
-            } else{
-                scope.model = false;
-                scope.modal_class = 'ui dimmer page';
-            }
-
-            scope.$watch('model', function (val) {
-                if (scope.model == true) {
-                    scope.modal_class = 'ui dimmer page active';
-                } else{
-                    scope.model = false;
-                    scope.modal_class = 'ui dimmer page';
-                }
-            });
+            
         }
     }
 });
