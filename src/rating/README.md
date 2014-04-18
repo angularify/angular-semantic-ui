@@ -1,32 +1,32 @@
-angularify.semantic.raiting
+angularify.semantic.rating
 ===============================
 
-`angularify.semantic.raiting` - raiting directive for angular.js.
+`angularify.semantic.rating` - rating directive for angular.js.
 
 Usage
 -------------------------------
 
 ```html
- <raiting id="my-raiting" size="large" type="heart" ng-model="raiting"></raiting>
+ <rating id="my-rating" size="large" type="heart" ng-model="rating"></rating>
 ```
 
 ```javascript
-var raitingApp = angular.module('raitingApp', ['angularify.semantic.raiting']);
+var ratingApp = angular.module('ratingApp', ['angularify.semantic.rating']);
 
 function RootCtrl ($scope) {
-    $scope.raiting = 2;
+    $scope.rating = 2;
 }
 ```
 
-**IMPORTANT** Every `<raiting>` must have unique `id` attribute.
+**IMPORTANT** Every `<rating>` must have unique `id` attribute.
 
-Raiting can have following properties:
+Rating can have following properties:
 
   * `size` - can be: `small`, `large`, `huge` or `undefined`
   
   * `type` - can be any icon class (see [semantic-ui](http://semantic-ui.com/elements/icon.html) docs)
   
-  * `ng-model` - return `Int` number: 0..5 (current raiting)
+  * `ng-model` - return `Int` number: 0..5 (current rating)
 
 
 Contribution

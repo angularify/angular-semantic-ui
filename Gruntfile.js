@@ -20,7 +20,7 @@ module.exports = function(grunt) {
               'src/checkbox/checkbox.js',   'src/dimmer/dimmer.js',
               'src/dropdown/dropdown.js',   'src/modal/modal.js',
               'src/popup/popup.js',         
-              'src/sidebar/sidebar.js', 'src/raiting/raiting.js'
+              'src/sidebar/sidebar.js', 'src/rating/rating.js'
              ],
         dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
       }

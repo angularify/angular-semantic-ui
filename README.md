@@ -12,7 +12,7 @@ Directives
   * [dropdown](https://github.com/angularify/angular-semantic-ui/tree/master/src/dropdown)
   * [modal](https://github.com/angularify/angular-semantic-ui/tree/master/src/modal)
   * [popup](https://github.com/angularify/angular-semantic-ui/tree/master/src/popup)
-  * [raiting](https://github.com/angularify/angular-semantic-ui/tree/master/src/raiting)
+  * [rating](https://github.com/angularify/angular-semantic-ui/tree/master/src/rating)
   * [sidebar](https://github.com/angularify/angular-semantic-ui/tree/master/src/sidebar)
 
 **IMPORTANT** angular-semantic-ui is only 0.0.1, and not production ready.
