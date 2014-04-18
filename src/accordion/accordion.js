@@ -28,9 +28,8 @@ angular.module('angularify.semantic.accordion', [])
 
         if (isCloseAll == true){
             for (i in $scope.accordions){
-                if (i == index){} else {
-                    $scope.accordions[i].class = 'title';
-                    $scope.accordions[i].content_class = 'content'; 
+                if (i !== index) {
+                    $scope.accordions[i].active = false;
                 }
             }
 
@@ -43,8 +42,9 @@ angular.module('angularify.semantic.accordion', [])
 
     this.remove_accordion = function(scope) {
       var index = $scope.accordions.indexOf(scope);
-      if ( index !== -1 )
+      if ( index !== -1 ) {
         $scope.accordions.splice(index, 1);
+      }
     }
 
     this.is_close_all = function() {
@@ -85,46 +85,30 @@ angular.module('angularify.semantic.accordion', [])
         },
         require:'^accordion',
         template: "<div class=\"ui accordion\">\
-                   <div class=\"{{class}}\" ng-click=\"click_on_accordeon_tab()\"> \
+                   <div class=\"title\" ng-class=\"{ active: active }\" ng-click=\"click_on_accordion_tab()\"> \
                      <i class=\"dropdown icon\"></i> \
                      {{ title }} \
                    </div> \
-                   <div class=\"{{content_class}}\" ng-transclude> \
+                   <div class=\"content\"  ng-class=\"{ active: active }\" ng-transclude> \
                    </div> \
                    </div>",
 
         link: function(scope, element, attrs, AccordionController) {
-            scope.isOpen = attrs.open;
-
-            if (scope.isOpen == undefined)
-                scope.isOpen = false;
 
             // set up active
-            if (attrs.open === 'true'){
-                scope.class = 'active title';
-                scope.content_class = 'active content';
-            }
-            else{ 
-                scope.class = 'title';
-                scope.content_class = "content";
-            }
+            scope.active = attrs.open === 'true';
             
+            // Add the accordion to the controller
             AccordionController.add_accordion(scope);
 
-            //
             // Click handler
-            //
-            scope.click_on_accordeon_tab = function(){
+            scope.click_on_accordion_tab = function(){
+                
                 // class all first of all
-                AccordionController.closeAll(scope)
-
-                if (scope.content_class == 'active content') {
-                    scope.class = 'title';
-                    scope.content_class = 'content';
-                } else {
-                    scope.class = 'active title';
-                    scope.content_class = 'active content';           
-                }     
+                AccordionController.closeAll(scope);
+                
+                // Swap the active state
+                scope.active = !scope.active;
             }
         }
     }
