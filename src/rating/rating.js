@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('angularify.semantic.raiting', [])
+angular.module('angularify.semantic.rating', [])
 
-.directive('raiting', function(){
+.directive('rating', function(){
     return {
         restrict: "E",
         replace: true,
@@ -27,7 +27,7 @@ angular.module('angularify.semantic.raiting', [])
             if (scope.model < 1 && scope.model > 5)
                 scope.model = 0;
 
-            // is raiting already checked
+            // is rating already checked
             var checked = false;
             
             //
@@ -66,7 +66,7 @@ angular.module('angularify.semantic.raiting', [])
                 }
 
                 return;
-            }
+            };
 
             //
             // Handle mouse leave
@@ -81,7 +81,7 @@ angular.module('angularify.semantic.raiting', [])
                 }
 
                 return;
-            }
+            };
 
             //
             // Handle click
@@ -96,14 +96,14 @@ angular.module('angularify.semantic.raiting', [])
                     checked = true;
 
                 return;
-            }
+            };
 
             //
             // Watch for model
             //
             scope.$watch('model', function(val){
-                scope.click(val)
+                scope.click(val);
             });
         }
-    }
+    };
 });
