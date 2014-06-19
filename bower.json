@@ -34,6 +34,7 @@
   "dependencies": {
     "angular": "latest",
     "angular-mocks" : "latest",
+    "angular-sanitize" : "latest",
     "semantic": "latest"
   },
   "devDependencies": {

@@ -8,6 +8,7 @@ angular.module('angularify.semantic.accordion', [])
     this.add_accordion = function(scope) {
         $scope.accordions.push(scope);
         
+        
         scope.$on('$destroy', function (event) {
             this.remove_accordion(scope);
         });

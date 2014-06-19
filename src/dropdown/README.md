@@ -15,11 +15,23 @@ Usage
 </dropdown>
 ```
 
+or
+
+```html
+<dropdown title="my dropdown" ng-model="category_model">
+	<dropdown-group title="c" ng-repeat="c in catetories">{{c}}</dropdown-group>
+</dropdown>
+```
+
 `dropdown` - can have following attributes:
 
   * `title` - title of the dropdown;
   * `ng-model` - angular model;
   * `open` - `true` || `false`. is current dropdown opened.
+
+`dropdown-group` - can have following attributes:
+
+  * `title` - optional setting to set the name and value of the entry. Helpful for those {{variables}} that don't.
 
 Contribution
 -------------------------------
