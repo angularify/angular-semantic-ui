@@ -31,7 +31,7 @@ angular.module('angularify.semantic.wizard', [])
         }, true);
 
 
-      
+
 
         this.addStep = function(step) {
             $scope.steps.push(step);
@@ -106,7 +106,12 @@ angular.module('angularify.semantic.wizard', [])
             replace: true,
             transclude: true,
             scope: {
-                fullwidth: "@"
+                fullwidth: "@",
+                currentStep: '=',
+                onFinish: '&',
+                hideIndicators: '=',
+                editMode: '=',
+                name: '@'
             },
             controller: 'WizardController',
             template: '<div><div class="ui steps {{stepsLength}} small"><div class="ui step" ng-repeat="step in steps" ng-click="!step.completed || goTo(step)" ng-class="{disabled: !step.completed && !step.selected, active: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}">{{step.title}}</div></div><div ng-transclude></div></div>',
