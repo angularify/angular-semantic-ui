@@ -17,11 +17,17 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             js: {
-                src: ['src/angularify.semantic.js', 'src/accordion/accordion.js',
-                    'src/checkbox/checkbox.js', 'src/dimmer/dimmer.js',
-                    'src/dropdown/dropdown.js', 'src/modal/modal.js',
+                src: ['src/angularify.semantic.js',
+                    'src/accordion/accordion.js',
+                    'src/checkbox/checkbox.js',
+                    'src/dimmer/dimmer.js',
+                    'src/dropdown/dropdown.js',
+                    'src/modal/modal.js',
                     'src/popup/popup.js',
-                    'src/sidebar/sidebar.js', 'src/rating/rating.js'
+                    'src/sidebar/sidebar.js',
+                    'src/rating/rating.js',
+                    'src/wizard/wizard.js',
+                    'src/wizard/wizardButtons.js'
                 ],
                 dest: '<%= dist %>/<%= filename %>.js'
             }
