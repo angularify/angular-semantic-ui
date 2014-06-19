@@ -53,7 +53,6 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
             } else {
                 scope.open = false;
             }
-            console.log(scope.open)
             DropDownController.add_item(scope);
 
             //
@@ -108,10 +107,14 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
         },
         template: '<div class="item" ng-transclude >{{title}}</div>',
         link: function(scope, element, attrs, DropDownController) {
+
+            // Check if title= was set... if not take the contents of the dropdown-group tag
+            // title= is for dynamic variables from something like ng-repeat {{variable}}
+            var title;
             if (scope.title === undefined) {
-                var title = scope.title
+                title = scope.title;
             } else {
-                var title = element.children()[0].innerHTML;
+                title = element.children()[0].innerHTML;
             }
 
             //
