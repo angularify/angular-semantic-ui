@@ -22,7 +22,6 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
             };
 
             this.update_title = function(title) {
-                console.log(title);
                 var i = 0;
                 for (i in $scope.items) {
                     $scope.items[i].title = title;
@@ -73,6 +72,7 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
             //
             scope.$watch('model', function(val) {
                 // update title
+                scope.model = val;
                 DropDownController.update_title(val);
             });
 
@@ -80,6 +80,7 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
             // Click handler
             //
             element.bind('click', function() {
+
                 if (scope.open === false) {
                     scope.open = true;
                     scope.$apply(function() {
@@ -87,6 +88,7 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
                     });
                 } else {
                     scope.open = false;
+                    scope.model = scope.title
                     scope.$apply(function() {
                         scope.dropdown_class = 'ui selection dropdown';
                     });
@@ -121,6 +123,7 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
             // Menu item click handler
             //
             element.bind('click', function() {
+
                 DropDownController.update_title(scope.title);
             });
         }
