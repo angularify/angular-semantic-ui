@@ -27,7 +27,6 @@ module.exports = function(grunt) {
                     'src/sidebar/sidebar.js',
                     'src/rating/rating.js',
                     'src/wizard/wizard.js',
-                    'src/wizard/wizardButtons.js'
                 ],
                 dest: '<%= dist %>/<%= filename %>.js'
             }
