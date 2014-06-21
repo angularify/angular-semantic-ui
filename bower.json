@@ -6,25 +6,25 @@
     "angular",
     "ui"
   ],
-  "homepage": "http://0xAX.github.io/angular-semantic-ui",
-  "bugs": "https://github.com/angularify/angular-semantic-ui",
+  "homepage": "http://solcates.github.io/angular-semantic-ui",
+  "bugs": "https://github.com/solcates/angular-semantic-ui",
   "author": {
     "name": "Alex Kuleshov",
     "url": "https://github.com/0xAX"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularify/angular-semantic-ui.git"
+    "url": "https://github.com/solcates/angular-semantic-ui.git"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/angularify/angular-semantic-ui/blob/master/LICENSE.md"
+      "url": "https://github.com/solcates/angular-semantic-ui/blob/master/LICENSE.md"
     }
   ],
   "main": [
-    "dist/angular-semantic-ui.min.js",
-    "dist/angular-semantic-ui.tpl.min.js"
+    "dist/angular-semantic-ui.js",
+    "dist/angular-semantic-ui.min.js"
   ],
   "ignore": [
     "docs",

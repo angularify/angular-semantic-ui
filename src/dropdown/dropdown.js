@@ -1,118 +1,131 @@
 'use strict';
 
-angular.module('angularify.semantic.dropdown', [])
+angular.module('angularify.semantic.dropdown', ['ngSanitize'])
+    .controller('DropDownController', ['$scope',
+        function($scope) {
+            $scope.items = [];
 
-.controller('DropDownController', ['$scope', function($scope){
-    $scope.items = [];
+            this.add_item = function(scope) {
+                $scope.items.push(scope);
 
-    this.add_item = function(scope) {
-        $scope.items.push(scope);
-        
-        scope.$on('$destroy', function (event) {
-            this.remove_accordion(scope);
-        });
-        
-        return $scope.items;
-    }
+                scope.$on('$destroy', function(event) {
+                    this.remove_accordion(scope);
+                });
 
-    this.remove_item = function(scope) {
-      var index = $scope.items.indexOf(scope);
-      if ( index !== -1 )
-        $scope.items.splice(index, 1);
-    }
+                return $scope.items;
+            };
 
-    this.update_title = function(title){
-        var i = 0;
-        for (i in $scope.items){
-            $scope.items[i].title = title;
+            this.remove_item = function(scope) {
+                var index = $scope.items.indexOf(scope);
+                if (index !== -1)
+                    $scope.items.splice(index, 1);
+            };
+
+            this.update_title = function(title) {
+                var i = 0;
+                for (i in $scope.items) {
+                    $scope.items[i].title = title;
+                }
+            };
+
         }
-    }
+    ])
 
-}])
-
-.directive("dropdown", function () {
+.directive('dropdown', function() {
     return {
         restrict: 'E',
         replace: true,
         transclude: true,
         controller: 'DropDownController',
         scope: {
-            title : "@",
-            open : "@",
-            model : '=ngModel'
+            title: '@',
+            open: '@',
+            model: '=ngModel'
         },
-        template: "<div class=\"{{dropdown_class}}\">" +
-                    "<div class=\"default text\">{{title}}</div>" + 
-                    "<i class=\"dropdown icon\"></i>" +
-                    "<div class=\"menu\" ng-transclude>" +
-                    "</div>" +
-                  "</div>",
-        link: function(scope, element, attrs, DropDownController){
+        template: '<div class="{{dropdown_class}}">' + '<div class="default text">{{title}}</div>' + '<i class="dropdown icon"></i>' + '<div class="menu" ng-transclude>' + '</div>' + '</div>',
+        link: function(scope, element, attrs, DropDownController) {
             scope.dropdown_class = 'ui selection dropdown';
-            
-            if (scope.open == "true"){
-                scope.open = true;
-                scope.dropdown_class = scope.dropdown_class + ' active visible'; 
-            }
-            else
-                scope.open = false;
 
+            if (scope.open === 'true') {
+                scope.open = true;
+                scope.dropdown_class = scope.dropdown_class + ' active visible';
+            } else {
+                scope.open = false;
+            }
             DropDownController.add_item(scope);
-            
+
             //
             // Watch for title changing
             //
-            scope.$watch('title', function (val) {
-                if (val == undefined)
+            scope.$watch('title', function(val) {
+                if (val === undefined)
                     return;
 
-                if (val == scope.title)
+                if (val === scope.title)
                     return;
-                
+
                 scope.model = val;
             });
 
             //
             // Watch for ng-model changing
             //
-            scope.$watch('model', function (val) {
+            scope.$watch('model', function(val) {
                 // update title
-                DropDownController.update_title(val)
+                scope.model = val;
+                DropDownController.update_title(val);
             });
 
             //
             // Click handler
             //
-            element.bind('click', function(){
-                if (scope.open == false){
+            element.bind('click', function() {
+
+                if (scope.open === false) {
                     scope.open = true;
-                    scope.$apply(function(){scope.dropdown_class = 'ui selection dropdown active visible'}); 
+                    scope.$apply(function() {
+                        scope.dropdown_class = 'ui selection dropdown active visible';
+                    });
                 } else {
                     scope.open = false;
-                    scope.$apply(function(){scope.dropdown_class = 'ui selection dropdown'});
-                } 
+                    scope.model = scope.title
+                    scope.$apply(function() {
+                        scope.dropdown_class = 'ui selection dropdown';
+                    });
+                }
             });
         }
-    }
+    };
 })
 
-.directive("dropdownGroup", function(){
+.directive('dropdownGroup', function() {
     return {
-        restrict: 'E',
+        restrict: 'AE',
         replace: true,
         transclude: true,
         require: '^dropdown',
-        scope : {
+        scope: {
+            title: '=title'
         },
-        template: '<div class="item" ng-transclude>{{title}}</div>',
-        link: function(scope, element, attrs, DropDownController){
-            var title = element.children()[0].innerHTML;
+        template: '<div class="item" ng-transclude >{{title}}</div>',
+        link: function(scope, element, attrs, DropDownController) {
+
+            // Check if title= was set... if not take the contents of the dropdown-group tag
+            // title= is for dynamic variables from something like ng-repeat {{variable}}
+            var title;
+            if (scope.title === undefined) {
+                title = scope.title;
+            } else {
+                title = element.children()[0].innerHTML;
+            }
+
             //
             // Menu item click handler
             //
-            element.bind('click', function(){
-                DropDownController.update_title(title)
+            element.bind('click', function() {
+
+                DropDownController.update_title(scope.title);
             });
         }
-    }
+    };
 });

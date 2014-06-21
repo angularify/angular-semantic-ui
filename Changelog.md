@@ -1,5 +1,8 @@
 0.0.2 [WiP]
 =============================
+  * Added Wizard directive
+  * fixes to dropdown to update model, and allow for {{variables}} as title
+  * code clean up and grunt task optimization
 
 0.0.1 [Released]
 =============================
