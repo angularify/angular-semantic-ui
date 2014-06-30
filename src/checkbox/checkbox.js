@@ -59,15 +59,17 @@ angular.module('angularify.semantic.checkbox', [])
             // Click handler
             //
             element.bind('click', function () {
-                if (scope.checked == true){
-                    scope.checked = true;
-                    scope.model   = false;
-                    element.children()[0].removeAttribute('checked');
-                } else {
-                    scope.checked = true;
-                    scope.model   = true;
-                    element.children()[0].setAttribute('checked', 'true');
-                }
+                scope.$apply(function() {
+                    if (scope.checked == true){
+                        scope.checked = true;
+                        scope.model   = false;
+                        element.children()[0].removeAttribute('checked');
+                    } else {
+                        scope.checked = true;
+                        scope.model   = true;
+                        element.children()[0].setAttribute('checked', 'true');
+                    }
+                })
             });
 
             //
