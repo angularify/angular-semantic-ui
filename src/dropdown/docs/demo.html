@@ -3,17 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <title>Semantic UI + Angular.JS</title>
-  <link href="../../../bower_components/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="../../../bower_components/semantic/dist/semantic.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body ng-controller="RootCtrl">
-    <dropdown title="my dropdown" ng-model="dropdown_model" open="true">
+    <h2>Basic</h2>
+
+    <dropdown title="my dropdown" ng-model="dropdown_model" open="false">
       <dropdown-group>item1</dropdown-group>
       <dropdown-group>item2</dropdown-group>
       <dropdown-group>item3</dropdown-group>
       <dropdown-group>item4</dropdown-group>
     </dropdown>
+
+    <p class="ui info message">
+      Current selection is: {{ dropdown_model }}
+    </p>
+
+    <h2>With ng-repeat</h2>
+
+    <dropdown title="my dropdown" ng-model="dropdown_repeat_model" open="false">
+      <dropdown-group title="item" ng-repeat="item in dropdown_items">{{ item }}</dropdown-group>
+    </dropdown>
+
+    <p class="ui info message">
+      Current selection is: {{ dropdown_repeat_model }}
+    </p>
     <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
-    <script src="../../angularify.semantic.js" type="text/javascript"></script>
     <script src="../dropdown.js" type="text/javascript"></script>
     <script src="controllers.js" type="text/javascript"></script>
 </body>
