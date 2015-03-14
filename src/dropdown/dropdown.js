@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('angularify.semantic.dropdown', ['ngSanitize'])
+angular.module('angularify.semantic.dropdown', [])
     .controller('DropDownController', ['$scope',
-        function($scope) {
+        function ($scope) {
             $scope.items = [];
 
-            this.add_item = function(scope) {
+            this.add_item = function (scope) {
                 $scope.items.push(scope);
 
                 scope.$on('$destroy', function(event) {
@@ -15,15 +15,14 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
                 return $scope.items;
             };
 
-            this.remove_item = function(scope) {
+            this.remove_item = function (scope) {
                 var index = $scope.items.indexOf(scope);
                 if (index !== -1)
                     $scope.items.splice(index, 1);
             };
 
-            this.update_title = function(title) {
-                var i = 0;
-                for (i in $scope.items) {
+            this.update_title = function (title) {
+                for (var i in $scope.items) {
                     $scope.items[i].title = title;
                 }
             };
@@ -31,7 +30,7 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
         }
     ])
 
-.directive('dropdown', function() {
+.directive('dropdown', function () {
     return {
         restrict: 'E',
         replace: true,
@@ -42,63 +41,69 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
             open: '@',
             model: '=ngModel'
         },
-        template: '<div class="{{dropdown_class}}">' + '<div class="default text">{{title}}</div>' + '<i class="dropdown icon"></i>' + '<div class="menu" ng-transclude>' + '</div>' + '</div>',
-        link: function(scope, element, attrs, DropDownController) {
+        template: '<div class="{{ dropdown_class }}">' +
+                    '<div class="default text">{{ title }}</div>' +
+                    '<i class="dropdown icon"></i>' +
+                    '<div class="{{ menu_class }}"  ng-transclude>' +
+                    '</div>' +
+                '</div>',
+        link: function (scope, element, attrs, DropDownController) {
             scope.dropdown_class = 'ui selection dropdown';
+            scope.menu_class = 'menu transition hidden';
+            scope.original_title = scope.title;
 
             if (scope.open === 'true') {
-                scope.open = true;
+                scope.is_open = true;
                 scope.dropdown_class = scope.dropdown_class + ' active visible';
+                scope.menu_class = scope.menu_class + ' visible';
             } else {
-                scope.open = false;
+                scope.is_open = false;
             }
             DropDownController.add_item(scope);
 
-            //
-            // Watch for title changing
-            //
-            scope.$watch('title', function(val) {
-                if (val === undefined)
-                    return;
-
-                if (val === scope.title)
+            /*
+             * Watch for title changing
+             */
+            scope.$watch('title', function (val, oldVal) {
+                if (val === undefined || val === oldVal || val === scope.original_title)
                     return;
 
                 scope.model = val;
             });
 
-            //
-            // Watch for ng-model changing
-            //
-            scope.$watch('model', function(val) {
-                // update title
+            /*
+             * Watch for ng-model changing
+             */
+            scope.$watch('model', function (val) {
+                // update title or reset the original title if its empty
                 scope.model = val;
-                DropDownController.update_title(val);
+                DropDownController.update_title(val || scope.original_title);
             });
 
-            //
-            // Click handler
-            //
-            element.bind('click', function() {
-
-                if (scope.open === false) {
-                    scope.open = true;
-                    scope.$apply(function() {
+            /*
+             * Click handler
+             */
+            element.bind('click', function () {
+                if (scope.is_open === false) {
+                    scope.$apply(function () {
                         scope.dropdown_class = 'ui selection dropdown active visible';
+                        scope.menu_class = 'menu transition visible';
                     });
                 } else {
-                    scope.open = false;
-                    scope.model = scope.title
-                    scope.$apply(function() {
+                    if (scope.title !== scope.original_title)
+                        scope.model = scope.title;
+                    scope.$apply(function () {
                         scope.dropdown_class = 'ui selection dropdown';
+                        scope.menu_class = 'menu transition hidden';
                     });
                 }
+                scope.is_open =! scope.is_open;
             });
         }
     };
 })
 
-.directive('dropdownGroup', function() {
+.directive('dropdownGroup', function () {
     return {
         restrict: 'AE',
         replace: true,
@@ -107,24 +112,22 @@ angular.module('angularify.semantic.dropdown', ['ngSanitize'])
         scope: {
             title: '=title'
         },
-        template: '<div class="item" ng-transclude >{{title}}</div>',
-        link: function(scope, element, attrs, DropDownController) {
+        template: '<div class="item" ng-transclude >{{ item_title }}</div>',
+        link: function (scope, element, attrs, DropDownController) {
 
             // Check if title= was set... if not take the contents of the dropdown-group tag
             // title= is for dynamic variables from something like ng-repeat {{variable}}
-            var title;
             if (scope.title === undefined) {
-                title = scope.title;
+                scope.item_title = element.children()[0].innerHTML;
             } else {
-                title = element.children()[0].innerHTML;
+                scope.item_title = scope.title;
             }
 
             //
             // Menu item click handler
             //
-            element.bind('click', function() {
-
-                DropDownController.update_title(scope.title);
+            element.bind('click', function () {
+                DropDownController.update_title(scope.item_title);
             });
         }
     };

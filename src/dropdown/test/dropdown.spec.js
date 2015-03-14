@@ -9,7 +9,7 @@ describe('dropdown', function () {
 
     describe('controller', function () {
         var ctrl, $element, $attrs;
-        
+
         beforeEach(inject(function($controller) {
           $attrs = {}; $element = {};
           ctrl = $controller('DropDownController', { $scope: $scope });
@@ -41,6 +41,6 @@ describe('dropdown', function () {
                 ctrl.update_title('title');
                 expect(scope.title).toBe('title');
             })
-        });    
+        });
     });
 });
