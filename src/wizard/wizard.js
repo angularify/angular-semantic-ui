@@ -11,7 +11,7 @@ angular.module('angularify.semantic.wizard', [])
         $scope.$watch('currentStep', function (step) {
             if (!step) return;
             var stepTitle = $scope.selectedStep.title;
-            if ($scope.selectedStep && stepTitle !== $scope.currentStep) {           
+            if ($scope.selectedStep && stepTitle !== $scope.currentStep) {
                 $scope.goTo($scope.steps.filter(function (step) {
                     return step.title ==- $scope.currentStep;
                 })[0]);
@@ -184,7 +184,7 @@ function wizardButtonDirective(action) {
                         e.preventDefault();
                         $scope.$apply(function () {
                             $scope.$eval($attrs[action]);
-                            wizard[action.replace('wd', '').toLowerCase()]();
+                            wizard[action.replace('wz', '').toLowerCase()]();
                         });
                     });
                 }
@@ -192,7 +192,7 @@ function wizardButtonDirective(action) {
         });
 }
 
-wizardButtonDirective('wdNext');
-wizardButtonDirective('wdPrevious');
-wizardButtonDirective('wdFinish');
-wizardButtonDirective('wdCancel');
+wizardButtonDirective('wzNext');
+wizardButtonDirective('wzPrevious');
+wizardButtonDirective('wzFinish');
+wizardButtonDirective('wzCancel');
