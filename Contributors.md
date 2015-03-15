@@ -6,3 +6,4 @@ Contributors:
   * [StudioThree10](https://github.com/studiothree10)
   * [cgroner](https://github.com/cgroner)
   * [solcates](https://github.com/solcates)
+  * [jspdown](https://github.com/jspdown)
