@@ -11,20 +11,26 @@ This Wizard is a port of the angular-wizard by mgonto from [github](https://gith
 Usage
 --------------------
 ```html
-<wizard fullwidth="true">
-	<wizard-pane title="Step1">
-		<h1>Step 1</h1>
-		<form name="step1form">
-			<input type="text">
-			<input type="submit" wz-next>
-		</form>
-	</wizard-pane>
-	<wizard-pane title="Step2">
-		<h1>Step 2</h1>
-		<form name="step2form">
-			<input type="text">
-			<input type="submit" wz-finish>
-	</wizard-pane>
+<wizard fullwidth="true" on-finish="finished()" current-step="currentStep">
+  <wizard-pane title="Step1">
+    <h1>Step 1</h1>
+    <form name="step1form">
+        <div class="ui input">
+          <input type="text">
+        </div>
+      <button type="submit" class="ui button" wd-next>Next</button>
+    </form>
+  </wizard-pane>
+  <wizard-pane title="Step2">
+    <h1>Step 2</h1>
+    <form name="step2form">
+        <div class="ui input">
+          <input type="text">
+        </div>
+      <button type="submit" class="ui button" wd-finish>Finish</button>
+      <button type="submit" class="ui button" wd-previous>Previous</button>
+    </form>
+  </wizard-pane>
 </wizard>
 ```
 
@@ -32,6 +38,8 @@ Usage
 `wizard` - can have following attributes:
 
   * `fullwidth` - Go fullwidth for the steps bar;
+  * `current-step` - Updated each time a new step is selected
+  * `on-finish` - Function to call when a button with `wd-finish` will be clicked
 
 
 `wizard-pane` - can have the following attributes

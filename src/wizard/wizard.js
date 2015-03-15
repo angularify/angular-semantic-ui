@@ -2,69 +2,65 @@
 'use strict';
 angular.module('angularify.semantic.wizard', [])
 
-
-
 .controller('WizardController', ['$scope',
     function($scope) {
         $scope.steps = [];
         $scope.currentStep = null;
-        $scope.stepsLength = "";
-        $scope.$watch('currentStep', function(step) {
+        $scope.stepsLength = '';
+        
+        $scope.$watch('currentStep', function (step) {
             if (!step) return;
-            var stepTitle = $scope.selectedStep.title || $scope.selectedStep.wzTitle;
+            var stepTitle = $scope.selectedStep.title;
             if ($scope.selectedStep && stepTitle !== $scope.currentStep) {
-                $scope.goTo(_.findWhere($scope.steps, {
-                    title: $scope.currentStep
-                }));
+                $scope.goTo($scope.steps.filter(function (step) {
+                    return step.title ==- $scope.currentStep;
+                })[0]);
             }
         });
 
-        $scope.$watch('[editMode, steps.length]', function() {
+        $scope.$watch('[editMode, steps.length]', function () {
             var editMode = $scope.editMode;
-            if (_.isUndefined(editMode) || _.isNull(editMode)) return;
+            if (editMode === undefined || editMode === null) return;
 
             if (editMode) {
-                _.each($scope.steps, function(step) {
+                $scope.steps.forEach(function (step) {
                     step.completed = true;
                 });
             }
         }, true);
 
-
-
-
-        this.addStep = function(step) {
+        this.addStep = function (step) {
             $scope.steps.push(step);
             if ($scope.steps.length === 1) {
                 $scope.goTo($scope.steps[0]);
             }
         };
 
-        $scope.goTo = function(step) {
+        $scope.goTo = function (step) {
             unselectAll();
             $scope.selectedStep = step;
-            if (!_.isUndefined($scope.currentStep)) {
-                $scope.currentStep = step.title || step.wzTitle;
+          
+            if ($scope.currentStep !== undefined) {
+                $scope.currentStep = step.title;
             }
+          
             step.selected = true;
             $scope.$emit('wizard:stepChanged', {
                 step: step,
-                index: _.indexOf($scope.steps, step)
+                index: $scope.steps.indexOf(step)
             });
         };
 
         function unselectAll() {
-            _.each($scope.steps, function(step) {
+            $scope.steps.forEach(function (step) {
                 step.selected = false;
             });
             $scope.selectedStep = null;
         }
 
-        this.next = function(draft) {
-            var index = _.indexOf($scope.steps, $scope.selectedStep);
-            if (!draft) {
-                $scope.selectedStep.completed = true;
-            }
+        this.next = function () {
+            var index = $scope.steps.indexOf($scope.selectedStep);
+            $scope.selectedStep.completed = true;
             if (index === $scope.steps.length - 1) {
                 this.finish();
             } else {
@@ -72,31 +68,46 @@ angular.module('angularify.semantic.wizard', [])
             }
         };
 
-        this.goTo = function(step) {
+        this.goTo = function (step) {
             var stepTo;
-            if (_.isNumber(step)) {
+
+            if (angular.isNumber(step)) {
                 stepTo = $scope.steps[step];
             } else {
-                stepTo = _.findWhere($scope.steps, {
-                    title: step
-                });
+                stepTo = $scope.steps.filter(function (step) {
+                    return step.title === step;
+                })[0];
             }
             $scope.goTo(stepTo);
         };
 
         this.finish = function() {
             if ($scope.onFinish) {
+                $scope.selectedStep.completed = true;
                 $scope.onFinish();
             }
         };
 
         this.cancel = this.previous = function() {
-            var index = _.indexOf($scope.steps, $scope.selectedStep);
+            var index = $scope.steps.indexOf($scope.selectedStep);
             if (index === 0) {
                 throw new Error('Cant go back. Its already in step 0');
             } else {
                 $scope.goTo($scope.steps[index - 1]);
             }
+        };
+
+        $scope.getStatus = function (step) {
+          var statusClass = [];
+            
+          if (step.selected)
+            statusClass.push('active');
+          if (!step.selected && !step.completed)
+            statusClass.push('disabled');
+          if (step.completed)
+            statusClass.push('completed');
+
+          return statusClass;
         };
     }
 ])
@@ -107,14 +118,21 @@ angular.module('angularify.semantic.wizard', [])
             transclude: true,
             scope: {
                 fullwidth: "@",
-                currentStep: '=',
+                currentStep: '=?',
                 onFinish: '&',
-                hideIndicators: '=',
                 editMode: '=',
                 name: '@'
             },
             controller: 'WizardController',
-            template: '<div><div class="ui steps {{stepsLength}} small"><div class="ui step" ng-repeat="step in steps" ng-click="!step.completed || goTo(step)" ng-class="{disabled: !step.completed && !step.selected, active: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}">{{step.title}}</div></div><div ng-transclude></div></div>',
+            template: '<div>' + 
+                        '<div class="ui steps {{stepsLength}} small">' + 
+                          '<div class="ui step" ng-repeat="step in steps" ng-click="step.completed && goTo(step)" ng-class="getStatus(step)">' + 
+                            '{{step.title}}' + 
+                          '</div>' + 
+                        '</div>' + 
+                        '<div class="ui hidden divider"></div>' +
+                        '<div ng-transclude></div>' + 
+                      '</div>',
             link: function(scope, element, attrs, WizardController) {
                 if (scope.fullwidth === 'true') {
                     var widthmatrix = {
@@ -146,29 +164,27 @@ angular.module('angularify.semantic.wizard', [])
             scope: {
                 title: '@'
             },
-            template: '<div class="ui segment" ng-transclude ng-show="selected"></div>',
+            template: '<div class="ui segment" ng-transclude ng-show="selected" ng-style="noMargin"></div>',
             link: function(scope, element, attrs, WizardController) {
-
                 WizardController.addStep(scope);
             }
         };
     });
 
-
 function wizardButtonDirective(action) {
     angular.module('angularify.semantic.wizard')
-        .directive(action, function() {
+        .directive(action, function () {
             return {
                 restrict: 'A',
                 replace: false,
                 require: '^wizard',
-                link: function($scope, $element, $attrs, wizard) {
-
-                    $element.on('click', function(e) {
+                link: function ($scope, $element, $attrs, wizard) {
+                    $scope.noMargin = { margin: 0 };
+                    $element.on('click', function (e) {
                         e.preventDefault();
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                             $scope.$eval($attrs[action]);
-                            wizard[action.replace("wz", "").toLowerCase()]();
+                            wizard[action.replace('wz', '').toLowerCase()]();
                         });
                     });
                 }
