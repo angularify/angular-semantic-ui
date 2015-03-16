@@ -26,7 +26,13 @@ Get main [repo](https://github.com/angularify/angular-semantic-ui) with:
 git clone https://github.com/angularify/angular-semantic-ui.git
 ```
 
-Than go to the `angular-semantic-ui directive` directory and execute:
+Than go to the `angular-semantic-ui` directory and install dependencies:
+
+```
+npm install && bower install
+```
+
+Then execute:
 
 ```
 grunt build && grunt test
