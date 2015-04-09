@@ -4,18 +4,22 @@ angular.module('angularify.semantic.modal', [])
 
 .directive('modal', function () {
     return {
-        restrict: "E",
+        restrict: 'E',
         replace: true,
         transclude: true,
-        scope: {
-            model: '=ngModel'
-        },
-        template: "<div class=\"ui dimmer page\" ng-class=\"{ active: model }\">" + 
-                    "<div class=\"ui test modal transition visible\" style=\"margin-top: -189px;\"  ng-transclude>" +
-                    "</div>" +
-                  "</div>",
-        link: function (scope, element, attrs) {
-            
+        require: 'ngModel',
+        template: '<div class="ui modal" ng-transclude></div>',
+        link: function (scope, element, attrs, ngModel) {          
+          element.modal({
+            onHide: function () {
+              ngModel.$setViewValue(false);
+            }
+          });
+          scope.$watch(function () {
+            return ngModel.$modelValue;
+          }, function (modelValue){
+            element.modal(modelValue ? 'show' : 'hide');
+          });
         }
     }
 });
