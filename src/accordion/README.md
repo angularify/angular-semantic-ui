@@ -1,7 +1,7 @@
 angularify.semantic.accordion
 ===============================
 
-`angularify.semantic.accordion` - accordeon directive for angular.js.
+`angularify.semantic.accordion` - accordion directive for angular.js.
 
 Usage
 -------------------------------
