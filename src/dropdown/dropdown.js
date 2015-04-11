@@ -7,11 +7,6 @@ angular.module('angularify.semantic.dropdown', [])
 
             this.add_item = function (scope) {
                 $scope.items.push(scope);
-
-                scope.$on('$destroy', function(event) {
-                    this.remove_accordion(scope);
-                });
-
                 return $scope.items;
             };
 
