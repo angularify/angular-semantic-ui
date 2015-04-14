@@ -7,7 +7,7 @@ Usage
 -------------------------------
 
 ```html
-<button class="ui btn" style="float: right;" ng-click="side_bar()">Show sidebar</button>
+<button class="ui btn right floated" ng-click="side_bar()">Show sidebar</button>
 <sidebar ng-model="show_sidebar">
   <sidebar-item title="Home"></sidebar-item>
   <sidebar-item title="Home2"></sidebar-item>
