@@ -71,7 +71,7 @@ angular.module('angularify.semantic.accordion', [])
         template: "<div class=\"ui accordion\" ng-transclude></div>",
         link: function(scope, element, attrs, AccordionController) {
 
-            if(typeof attrs.styled  === 'undefined') {
+            if(typeof attrs.styled  !== 'undefined') {
                 element.addClass('styled');
             }
 
