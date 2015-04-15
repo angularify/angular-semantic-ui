@@ -70,6 +70,11 @@ angular.module('angularify.semantic.accordion', [])
         },
         template: "<div class=\"ui accordion\" ng-transclude></div>",
         link: function(scope, element, attrs, AccordionController) {
+
+            if(typeof attrs.styled  === 'undefined') {
+                element.addClass('styled');
+            }
+
             AccordionController.add_accordion(scope);
         }
     }
@@ -85,7 +90,7 @@ angular.module('angularify.semantic.accordion', [])
             open: '@'
         },
         require:'^accordion',
-        template: "<div class=\"ui accordion\">\
+        template: "<div class=\"ui\">\
                    <div class=\"title\" ng-class=\"{ active: active }\" ng-click=\"click_on_accordion_tab()\"> \
                      <i class=\"dropdown icon\"></i> \
                      {{ title }} \
@@ -110,7 +115,10 @@ angular.module('angularify.semantic.accordion', [])
                 
                 // Swap the active state
                 scope.active = !scope.active;
-            }
+
+                // Add animation to the accordion group content
+                element.children().last().slideToggle();
+            };
         }
-    }
+    };
 });
