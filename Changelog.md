@@ -1,8 +1,26 @@
-0.0.2 [WiP]
+0.0.3 [Released]
 =============================
-  * Added Wizard directive
-  * fixes to dropdown to update model, and allow for {{variables}} as title
-  * code clean up and grunt task optimization
+
+  * Animated modal
+  * Destroy listener was being called to destroy an accordion in the dropdown module
+  * Corrected spelling in accordion README.md
+  * Use semantic ui classes instead of inline style in the sidebar module
+
+
+0.0.2 [Released]
+=============================
+
+  * Added wizard directive
+  * Fixes to dropdown to update model, and allow for {{variables}} as title
+  * Code clean up and grunt task optimization
+  * Fixed scope issue with accordion
+  * Updated modal to use ng-class
+  * Updated accordion to use ng-class
+  * Updated sidebar to use semantic-ui javascript functions
+  * Updated README.md
+  * Corrected spelling in rating module
+  * Corrected opening problem for the dropdown
+
 
 0.0.1 [Released]
 =============================

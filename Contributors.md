@@ -7,3 +7,6 @@ Contributors:
   * [cgroner](https://github.com/cgroner)
   * [solcates](https://github.com/solcates)
   * [jspdown](https://github.com/jspdown)
+  * [xblaster](https://github.com/xblaster)
+  * [frankt117](https://github.com/frankt117)
+  * [tombee](https://github.com/tombee)
