@@ -1,9 +1,7 @@
-var sidebarApp = angular.module('sidebarApp', ['angularify.semantic.sidebar']);
+angular
+  .module('sidebarApp', ['angularify.semantic.sidebar'])
+  .controller('RootCtrl', RootCtrl);
 
 function RootCtrl ($scope) {
-    $scope.show_sidebar = false;
-
-    $scope.side_bar = function(){
-        $scope.show_sidebar = !$scope.show_sidebar;
-    }
+  $scope.isOpen = false;
 }

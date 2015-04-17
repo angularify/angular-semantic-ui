@@ -7,34 +7,52 @@ Usage
 -------------------------------
 
 ```html
-<button class="ui btn right floated" ng-click="side_bar()">Show sidebar</button>
-<sidebar ng-model="show_sidebar">
-  <sidebar-item title="Home"></sidebar-item>
-  <sidebar-item title="Home2"></sidebar-item>
-  <sidebar-item title="Home3"></sidebar-item>
-</sidebar>
+  <sidebar button-class="#openSidebar">
+    <sidebar-item>
+      <h2 class="ui header inverted">
+        <div class="content">
+          Sidebar
+          <div class="sub header">Links and items</div>
+        </div>
+      </h2>
+    </sidebar-item>
+    <sidebar-link icon="home" title="home" href="#"></sidebar-link>
+    
+    <sidebar-item-group title="other">
+      <sidebar-link title="contact" href="#"></sidebar-link>
+      <sidebar-link title="download" href="#"></sidebar-link>
+    </sidebar-item-group>
+  </sidebar>
+  
+  
+  <div class="pusher">
+    <button id="openSidebar" class="ui btn">Show sidebar</button>
+  </div>
 ```
 
 ```javascript
-var sidebarApp = angular.module('sidebarApp', ['angularify.semantic.sidebar']);
+angular
+  .module('sidebarApp', ['angularify.semantic.sidebar'])
+  .controller('RootCtrl', RootCtrl);
 
 function RootCtrl ($scope) {
-    $scope.show_sidebar = false;
-
-    $scope.side_bar = function(){
-        $scope.show_sidebar = !$scope.show_sidebar;
-    }
+  $scope.isOpen = false;
 }
 ```
 `<sidebar>` - can have following properties:
 
-  * `ng-model` - show current sidebar, `true` or `false`;
+  * `button-class` - attach a selector that open the sidebar
 
-`<sidebar-item>` - can have following properties:
+`<sidebar-group-item>` - can have following properties:
 
-  * `title` - menu title;
-  * `href`  - link address;
-  * `icon`  - menu icon.
+  * `title` - group title
+  
+`<sidebar-link>` - can have following properties:
+  
+  * `title` - link text
+  * `icon`  - icon name
+  * `href`  - link address
+
 
 Contribution
 -------------------------------

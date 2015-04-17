@@ -3,18 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <title>Semantic UI + Angular.JS</title>
-  <link href="../../../bower_components/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="../../../bower_components/semantic/dist/semantic.min.css" rel="stylesheet" type="text/css" /> 
 </head>
 <body ng-controller="RootCtrl">
-    <button class="ui btn" style="float: right;" ng-click="side_bar()">Show sidebar</button>
-    <sidebar ng-model="show_sidebar">
-      <sidebar-item title="Home"></sidebar-item>
-      <sidebar-item title="Home2"></sidebar-item>
-      <sidebar-item title="Home3"></sidebar-item>
-    </sidebar>
-    <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
-    <script src="../../angularify.semantic.js" type="text/javascript"></script>
-    <script src="../sidebar.js" type="text/javascript"></script>
-    <script src="controllers.js" type="text/javascript"></script>
+  <sidebar button-class="#openSidebar">
+    <sidebar-item>
+      <h2 class="ui header inverted">
+        <div class="content">
+          Sidebar
+          <div class="sub header">Links and items</div>
+        </div>
+      </h2>
+    </sidebar-item>
+    <sidebar-link icon="home" title="home"></sidebar-link>
+    
+    <sidebar-item-group title="other">
+      <sidebar-link title="contact"></sidebar-link>
+      <sidebar-link title="download"></sidebar-link>
+    </sidebar-item-group>
+  </sidebar>
+  
+  
+  <div class="pusher">
+    <button id="openSidebar" class="ui btn">Show sidebar</button>
+  </div>
+
+  <script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
+  <script src="../../../bower_components/semantic/dist/semantic.min.js" type="text/javascript"></script>
+  <script src="../sidebar.js" type="text/javascript"></script>
+  <script src="controllers.js" type="text/javascript"></script>
 </body>
 </html>
