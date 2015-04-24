@@ -80,6 +80,11 @@ angular.module('angularify.semantic.accordion', [])
         },
         template: "<div class=\"ui accordion\" ng-transclude></div>",
         link: function(scope, element, attrs, AccordionController) {
+
+            if(typeof attrs.styled  !== 'undefined') {
+                element.addClass('styled');
+            }
+
             AccordionController.add_accordion(scope);
         }
     }
@@ -95,7 +100,7 @@ angular.module('angularify.semantic.accordion', [])
             open: '@'
         },
         require:'^accordion',
-        template: "<div class=\"ui accordion\">\
+        template: "<div class=\"ui\">\
                    <div class=\"title\" ng-class=\"{ active: active }\" ng-click=\"click_on_accordion_tab()\"> \
                      <i class=\"dropdown icon\"></i> \
                      {{ title }} \
@@ -120,11 +125,13 @@ angular.module('angularify.semantic.accordion', [])
                 
                 // Swap the active state
                 scope.active = !scope.active;
-            }
-        }
-    }
-});
 
+                // Add animation to the accordion group content
+                element.children().last().slideToggle();
+            };
+        }
+    };
+});
 'use strict';
 
 angular.module('angularify.semantic.checkbox', [])
@@ -181,20 +188,30 @@ angular.module('angularify.semantic.checkbox', [])
                 scope.checked = true;
                 element.children()[0].setAttribute('checked', '');
             }
+            
+            //
+            // check if the parameter disabled is available
+            //
+            if (scope.disabled == 'disabled') {
+                scope.checkbox_class += ' disabled';
+            }
+
 
             //
             // Click handler
             //
             element.bind('click', function () {
                 scope.$apply(function() {
-                    if (scope.checked == true){
-                        scope.checked = true;
-                        scope.model   = false;
-                        element.children()[0].removeAttribute('checked');
-                    } else {
-                        scope.checked = true;
-                        scope.model   = true;
-                        element.children()[0].setAttribute('checked', 'true');
+                    if (scope.disabled == undefined) {
+                        if (scope.checked == true){
+                            scope.checked = true;
+                            scope.model   = false;
+                            element.children()[0].removeAttribute('checked');
+                        } else {
+                            scope.checked = true;
+                            scope.model   = true;
+                            element.children()[0].setAttribute('checked', 'true');
+                        }
                     }
                 })
             });
@@ -217,6 +234,7 @@ angular.module('angularify.semantic.checkbox', [])
         }
     }
 });
+
 'use strict';
 
 angular.module('angularify.semantic.dimmer', [])
@@ -545,23 +563,68 @@ angular.module('angularify.semantic.popup', [])
 });
 'use strict';
 
-angular.module('angularify.semantic.sidebar', [])
-.directive('sidebar', function () {
-    return {
-        restrict: "E",
-        replace: true,
-        transclude: true,
-        template: '<div class="ui sidebar" ng-transclude></div>',
-        scope: {
-            buttonClass : '='
-        },
-        link: function(scope, element, attrs){
-            debugger;
-            element.sidebar('attach events', scope.buttonClass);
-        }
+angular
+  .module('angularify.semantic.sidebar', [])
+  .directive('sidebar', sidebar)
+  .directive('sidebarLink', sidebarLink)
+  .directive('sidebarItem', sidebarItem)
+  .directive('sidebarItemGroup', sidebarItemGroup);             
+             
+function sidebar() {
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    template: '<div class="ui inverted left vertical sidebar menu" ' +
+                    'ng-transclude></div>',
+    scope: {
+      buttonClass: '@'
+    },
+    link: function (scope, element, attrs) {
+      element.sidebar('attach events', scope.buttonClass, 'show');
     }
-});
+  };
+}
 
+function sidebarItemGroup() {
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    template: '<div class="item">' + 
+                '<div class="ui small inverted header">{{ title }}</div>' +
+                '<div class="menu" ng-transclude></div>' +
+              '</div>',
+    scope: {
+      title: '@' 
+    }
+  };
+}
+
+function sidebarItem() {
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    template: '<div class="item" ng-transclude></div>'
+  };
+}
+
+function sidebarLink() {
+  return {
+    restrict: 'E',
+    replace: true,
+    template: '<a class="item" href="{{ href }}">' +
+                '<i class="{{ icon }} icon"></i>' +
+                '{{ title }}' +
+              '</a>',
+    scope: {
+      title: '@',
+      icon: '@',
+      href: '@'
+    }
+  };
+}
 'use strict';
 
 angular.module('angularify.semantic.rating', [])
