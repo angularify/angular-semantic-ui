@@ -54,20 +54,30 @@ angular.module('angularify.semantic.checkbox', [])
                 scope.checked = true;
                 element.children()[0].setAttribute('checked', '');
             }
+            
+            //
+            // check if the parameter disabled is available
+            //
+            if (scope.disabled == 'disabled') {
+                scope.checkbox_class += ' disabled';
+            }
+
 
             //
             // Click handler
             //
             element.bind('click', function () {
                 scope.$apply(function() {
-                    if (scope.checked == true){
-                        scope.checked = true;
-                        scope.model   = false;
-                        element.children()[0].removeAttribute('checked');
-                    } else {
-                        scope.checked = true;
-                        scope.model   = true;
-                        element.children()[0].setAttribute('checked', 'true');
+                    if (scope.disabled == undefined) {
+                        if (scope.checked == true){
+                            scope.checked = true;
+                            scope.model   = false;
+                            element.children()[0].removeAttribute('checked');
+                        } else {
+                            scope.checked = true;
+                            scope.model   = true;
+                            element.children()[0].setAttribute('checked', 'true');
+                        }
                     }
                 })
             });
