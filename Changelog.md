@@ -35,5 +35,5 @@
   * `dropdown` - initial release;
   * `modal`    - initial release;
   * `popup`    - initial release;
-  * `raiting`  - initial release;
+  * `rating`  - initial release;
   * `sidebar`  - initial release.
