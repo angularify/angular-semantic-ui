@@ -4,6 +4,8 @@ angular.module('angularify.semantic', ['angularify.semantic.accordion',
 	                                   'angularify.semantic.dropdown',
 	                                   'angularify.semantic.modal',
 	                                   'angularify.semantic.popup',
+	                                   'angularify.semantic.portlet',
 	                                   'angularify.semantic.rating',
 	                                   'angularify.semantic.sidebar',
+	                                   'angularify.semantic.statistic',
 	                                   'angularify.semantic.wizard']);

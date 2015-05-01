@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html ng-app="statisticApp">
+<head>
+	<meta charset="utf-8" />
+	<title>Semantic UI + Angular.JS</title>
+	<link href="../../../bower_components/semantic/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="ui top attached block center aligned large header blue">
+		Statistic Directive using Semantic UI
+		<div class="sub header"> Angular based directive & Controls </div>
+	</div>
+	<div class="ui bottom attached segment">
+		<div class="ui stackable two column grid">
+			<div class="column">
+				<statistics>
+					<statistic text="Twenty Four" title="My Score" big-text="true" color="purple" size="huge" title-icon="expand" ></statistic>
+					<statistic text="24" title="My Score" title-top="false" color="blue" text-icon="plane" ></statistic>
+				</statistics>
+			</div>
+			<div class="column"><statistics horizontal="true">
+				<statistic text="Twenty Four" title="My Score" big-text="true" color="purple" size="huge" title-icon="expand" ></statistic>
+				<statistic text="24" title="My Score" title-top="false" color="blue" text-icon="plane" ></statistic>
+			</statistics>
+		</div>
+	</div>
+</div>
+<script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
+<script src="../statistic.js" type="text/javascript"></script>
+<script src="controllers.js" type="text/javascript"></script>
+</body>
+</html>
