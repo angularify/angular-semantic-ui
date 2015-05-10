@@ -19,19 +19,20 @@ or
 
 ```html
 <dropdown title="my dropdown" ng-model="category_model">
-	<dropdown-group title="c" ng-repeat="c in catetories">{{c}}</dropdown-group>
+	<dropdown-group value="c.value" title="c.title" ng-repeat="c in catetories">{{c.title}}</dropdown-group>
 </dropdown>
 ```
 
 `dropdown` - can have following attributes:
 
-  * `title` - title of the dropdown;
+  * `title` - title(placeholder) of the dropdown;
   * `ng-model` - angular model;
   * `open` - `true` || `false`. is current dropdown opened.
 
 `dropdown-group` - can have following attributes:
 
-  * `title` - optional setting to set the name and value of the entry. Helpful for those {{variables}} that don't.
+  * `title` - optional setting to set the name and value (if value not specified) of the entry. Helpful for those {{variables}} that don't;
+  * `value` - set item value.
 
 Contribution
 -------------------------------
