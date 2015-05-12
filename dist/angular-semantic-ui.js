@@ -145,6 +145,7 @@ angular.module('angularify.semantic.checkbox', [])
             type: "@",
             size: "@",
             checked: "@",
+	    disabled: "@",
             model: '=ngModel'
         },
         template: "<div class=\"{{checkbox_class}}\">" +
