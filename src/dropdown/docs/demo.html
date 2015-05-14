@@ -28,6 +28,16 @@
     <p class="ui info message">
       Current selection is: {{ dropdown_repeat_model }}
     </p>
+
+    <h2>With ng-repeat and key/value objects</h2>
+
+    <dropdown title="my dropdown" ng-model="dropdown_key_value_model" open="false">
+      <dropdown-group value="key" title="title" ng-repeat="(key, title) in dropdown_key_value_items">{{ title }}</dropdown-group>
+    </dropdown>
+
+    <p class="ui info message">
+      Current selection is: {{ dropdown_key_value_model }}
+    </p>
     <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
     <script src="../dropdown.js" type="text/javascript"></script>
     <script src="controllers.js" type="text/javascript"></script>

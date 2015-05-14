@@ -1,46 +1,75 @@
 describe('dropdown', function () {
-    var $scope;
+  var element, $scope;
 
-    beforeEach(module('angularify.semantic.dropdown'));
+  beforeEach(module('angularify.semantic.dropdown'));
 
-    beforeEach(inject(function ($rootScope) {
-        $scope = $rootScope;
-    }));
+  beforeEach(inject(function($rootScope, $compile) {
+    element = angular.element(
+      '<div>' +
+        '<dropdown title="No value" ng-model="dropdown_model">' +
+          '<dropdown-group value="key"' +
+                          'title="title"' +
+                          'ng-repeat="(key, title) in dropdown_items">' +
+            '{{ title }}' +
+          '</dropdown-group>' +
+        '</dropdown>' +
+      '</div>');
 
-    describe('controller', function () {
-        var ctrl, $element, $attrs;
+    scope = $rootScope;
+    scope.dropdown_model = '';
+    scope.dropdown_items = {};
+    $compile(element)(scope);
+    scope.$digest();
+  }));
 
-        beforeEach(inject(function($controller) {
-          $attrs = {}; $element = {};
-          ctrl = $controller('DropDownController', { $scope: $scope });
-        }));
+  it('should create element with default header', inject(function($compile, $rootScope) {
+    var header = element.find('div.dropdown > div');
+    expect(header.eq(0).text()).toBe('No value');
+  }));
 
-        describe('add_item', function() {
-            it("DropDownController add_item test", function(){
-                var acc1, acc2;
-                ctrl.add_item(acc1 = $scope.$new());
-                ctrl.add_item(acc2 = $scope.$new());
-                expect($scope.items.length).toBe(2);
-            });
-        });
+  it('should have right amount of options', inject(function($compile, $rootScope) {
+    var items = element.find('.menu > div.item');
+    expect(items.length).toBe(0);
 
-        describe('remove_item', function(){
-            it("DropDownController remove_item test", function(){
-                var acc1, acc2;
-                ctrl.add_item(acc1 = $scope.$new());
-                ctrl.add_item(acc2 = $scope.$new());
-                ctrl.remove_item(acc2);
-                expect($scope.items.length).toBe(1);
-            })
-        });
-
-        describe('update_title', function () {
-            it("DropDownController update_title test", function () {
-                var scope = $scope.$new();
-                ctrl.add_item(scope);
-                ctrl.update_title('title');
-                expect(scope.title).toBe('title');
-            })
-        });
+    scope.$apply(function() {
+      scope.dropdown_items = [{'item1': 'Cool item1'}, {'item2': 'Cool item2'}];
     });
+
+    items = element.find('.menu > div.item');
+    expect(items.length).toBe(2);
+
+  }));
+
+  it('should change model value when user choose option', inject(function($compile, $rootScope) {
+    scope.$apply(function() {
+      scope.dropdown_items = {'item1': 'Cool item1',
+                              'item2': 'Cool item2'};
+    });
+
+    var dropdown = element.find('.dropdown');
+    dropdown.click();
+
+    var option1 = element.find('.menu > div.item').eq(0);
+    option1.click()
+    expect(scope.dropdown_model).toBe('item1');
+
+  }));
+
+  it('should change element header when user choose option', inject(function($compile, $rootScope) {
+    scope.$apply(function() {
+      scope.dropdown_items = {'item1': 'Cool item1',
+                              'item2': 'Cool item2'};
+    });
+
+    var dropdown = element.find('.dropdown');
+    dropdown.click();
+
+    var option1 = element.find('.menu > div.item').eq(0);
+    option1.click()
+
+    var header = element.find('div.dropdown > div');
+    expect(header.eq(0).text()).toBe('Cool item1');
+
+  }));
+
 });
