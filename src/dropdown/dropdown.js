@@ -3,22 +3,45 @@
 angular.module('angularify.semantic.dropdown', [])
   .controller('DropDownController', ['$scope',
     function($scope) {
-      $scope.items = [];
+      $scope.options = [];
 
-      this.add_item = function(scope) {
-        $scope.items.push(scope);
-        return $scope.items;
+      this.add_option = function(title, value){
+        $scope.options.push({'title': title, 'value': value});
+        if (value == $scope.model){
+          this.update_title(value)
+        };
       };
 
-      this.remove_item = function(scope) {
-        var index = $scope.items.indexOf(scope);
-        if (index !== -1)
-          $scope.items.splice(index, 1);
+      this.remove_option = function(title, value){
+        for (var index in $scope.options)
+          if ($scope.options[index].value == value &&
+            $scope.options[index].title == title){
+
+            $scope.options.splice(index, 1);
+            // Remove only one item
+            break;
+          };
       };
 
-      this.update_title = function(title) {
-        for (var i in $scope.items) {
-          $scope.items[i].title = title;
+      this.update_model = function (title, value) {
+        if ($scope.model !== value)
+          $scope.model = value;
+      };
+
+      this.update_title = function (value) {
+        var changed = false;
+
+        for (var index in $scope.options)
+          if ($scope.options[index].value == value){
+            $scope.title = $scope.options[index].title;
+            changed = true;
+          }
+
+        if (changed){
+          $scope.text_class = 'text';
+        } else{
+          $scope.title = $scope.original_title;
+          $scope.text_class = 'default text';
         }
       };
 
@@ -55,26 +78,14 @@ angular.module('angularify.semantic.dropdown', [])
       } else {
         scope.is_open = false;
       }
-      DropDownController.add_item(scope);
-
-      /*
-       * Watch for title changing
-       */
-      scope.$watch('title', function(val, oldVal) {
-        if (val === undefined || val === oldVal || val === scope.original_title)
-          return;
-
-        scope.text_class = 'text';
-        scope.model = val;
-      });
 
       /*
        * Watch for ng-model changing
        */
-      scope.$watch('model', function(val) {
+      scope.element = element;
+      scope.$watch('model', function (value) {
         // update title or reset the original title if its empty
-        scope.model = val;
-        DropDownController.update_title(val || scope.original_title);
+        DropDownController.update_title(value);
       });
 
       /*
@@ -87,8 +98,6 @@ angular.module('angularify.semantic.dropdown', [])
             scope.menu_class = 'menu transition visible';
           });
         } else {
-          if (scope.title !== scope.original_title)
-            scope.model = scope.title;
           scope.$apply(function() {
             scope.dropdown_class = 'ui selection dropdown';
             scope.menu_class = 'menu transition hidden';
@@ -107,25 +116,39 @@ angular.module('angularify.semantic.dropdown', [])
     transclude: true,
     require: '^dropdown',
     scope: {
-      title: '=title'
+      title: '=title',
+      value: '=value'
     },
-    template: '<div class="item" ng-transclude >{{ item_title }}</div>',
+    template: '<div class="item" ng-transclude>{{ item_title }}</div>',
     link: function(scope, element, attrs, DropDownController) {
 
       // Check if title= was set... if not take the contents of the dropdown-group tag
       // title= is for dynamic variables from something like ng-repeat {{variable}}
       if (scope.title === undefined) {
-        scope.item_title = element.children()[0].innerHTML;
+        scope.item_title = attrs.title || element.children()[0].innerHTML;
       } else {
         scope.item_title = scope.title;
       }
+      if (scope.value === undefined) {
+        scope.item_value = attrs.value || scope.item_title;
+      } else {
+        scope.item_value = scope.value;
+      }
+
+      // Keep this option
+      DropDownController.add_option(scope.item_title, scope.item_value);
 
       //
       // Menu item click handler
       //
       element.bind('click', function() {
-        DropDownController.update_title(scope.item_title);
+        DropDownController.update_model(scope.item_title, scope.item_value);
       });
+
+      scope.$on('$destroy', function(){
+        DropDownController.remove_option(scope.item_title, scope.item_value);
+      });
+
     }
   };
 });
