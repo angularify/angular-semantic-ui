@@ -23,7 +23,7 @@
     }
   ],
   "main": [
-    "dist/angular-semantic-ui.min.js"
+    "dist/angular-semantic-ui.js"
   ],
   "ignore": [
     "docs",
