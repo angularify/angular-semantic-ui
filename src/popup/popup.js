@@ -13,6 +13,10 @@ angular.module('angularify.semantic.popup', [])
             // convert to json
             var popup_meta_data = eval('(' + scope.popup + ')');
             
+            if (popup_meta_data === undefined) {
+                return;
+            }
+            
             var title = popup_meta_data['title'];
             if (title == undefined)
                 title = '';
