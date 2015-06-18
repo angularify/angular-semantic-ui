@@ -56,6 +56,12 @@ describe('checkbox', function () {
             var element = $compile('<checkbox ng-model="value" disabled="true">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();
             expect(element.find('input').is(':disabled')).toBeTruthy();
+
+            expect(element.find('input').is(':checked')).toBeFalsy();
+            expect($rootScope.value).toBeFalsy();
+            element.find('label').click();
+            expect(element.find('input').is(':checked')).toBeFalsy();
+            expect($rootScope.value).toBeFalsy();
         });
 
         it('should be enabled when marked disabled false', function() {
