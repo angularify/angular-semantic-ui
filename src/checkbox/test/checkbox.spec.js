@@ -45,6 +45,13 @@ describe('checkbox', function () {
             expect($rootScope.value).toBeTruthy();
         });
 
+        it('should be not checked when marked checked false', function() {
+            var element = $compile('<checkbox ng-model="value" checked="false">checkbox\'s label</checkbox>')($rootScope);
+            $rootScope.$digest();
+            expect(element.find('input').is(':checked')).toBeFalsy();
+            expect($rootScope.value).toBeFalsy();
+        });
+
         it('should be disabled when marked disabled', function() {
             var element = $compile('<checkbox ng-model="value" disabled="true">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();

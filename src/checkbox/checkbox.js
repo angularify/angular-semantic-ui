@@ -16,9 +16,9 @@ angular.module('angularify.semantic.checkbox', [])
     controller: function() {
       var vm = this;
 
-      if(vm.checked) {
-        vm.ngModel = true;
-      }
+      if(angular.isUndefined(vm.ngModel)) { vm.ngModel = !!vm.ngModel; }
+
+      if(angular.isFunction(vm.checked)) { vm.ngModel = !!vm.checked(); }
 
       vm.classes = {
         slider: vm.type == 'slider',
@@ -34,7 +34,7 @@ angular.module('angularify.semantic.checkbox', [])
     bindToController: true,
     require: [ 'checkbox', 'ngModel' ],
     template: "<div class=\"ui checkbox\" ng-class=\"vm.classes\">" +
-      "<input type=\"checkbox\" ng-model=\"vm.ngModel\" ng-checked=\"vm.checked\" ng-disabled=\"vm.disabled\"/>" +
+      "<input type=\"checkbox\" ng-model=\"vm.ngModel\" ng-disabled=\"vm.disabled\"/>" +
       "<label ng-click=\"vm.toggle()\" ng-transclude></label>" +
       "</div>",
     link: function() { }
