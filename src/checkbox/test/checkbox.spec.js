@@ -58,6 +58,12 @@ describe('checkbox', function () {
             expect(element.find('input').is(':disabled')).toBeTruthy();
         });
 
+        it('should be enabled when marked disabled false', function() {
+            var element = $compile('<checkbox ng-model="value" disabled="false">checkbox\'s label</checkbox>')($rootScope);
+            $rootScope.$digest();
+            expect(element.find('input').is(':disabled')).toBeFalsy();
+        });
+
         it('should be large when size is large', function() {
             var element = $compile('<checkbox ng-model="value" size="large">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();
