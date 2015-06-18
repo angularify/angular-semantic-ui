@@ -29,7 +29,10 @@ angular.module('angularify.semantic.checkbox', [])
         huge: vm.size == 'huge'
       };
 
-      vm.toggle = function() { vm.ngModel = !vm.ngModel }
+      vm.toggle = function() {
+        if(angular.isFunction(vm.disabled) && vm.disabled()) return;
+        vm.ngModel = !vm.ngModel;
+      }
     },
     controllerAs: 'vm',
     bindToController: true,
