@@ -39,7 +39,7 @@ angular.module('angularify.semantic.dimmer', [])
             //
             scope.$watch('model', function(val){
                 if (val == false || val == undefined)
-                    return;
+                    scope.dimmer_class = 'ui page dimmer';
                 else
                     scope.dimmer_class = 'ui page active dimmer';
             });
