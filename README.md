@@ -38,7 +38,7 @@ $ git clone https://github.com/angularify/angular-semantic-ui.git
 Than go to the `angular-semantic-ui` directory and install dependencies:
 
 ```
-$ npm install && bower install
+$ npm install
 ```
 
 Then execute:
