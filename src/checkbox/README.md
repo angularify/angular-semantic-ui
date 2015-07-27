@@ -20,8 +20,7 @@ Usage
 
 `checkbox` - can have following properties:
 
-  * `type`:   - `standard` || `slider` || `toggle` || `undefined` - the type of checkbox;
-  * `size`:   - `large` || `huge` || `undefined` - the size of the current checkbox;
+  * `class / ng-class`:   - `standard` || `slider` || `toggle` || `large` || `huge` || `undefined` - the style of checkbox;
   * `checked` - `true` || `false`, checked checkbox or not;
   -	`disabled` - `disabled`, optional if the checkbox is disabled or not;
   * `ng-model`   - angular model.
