@@ -155,14 +155,6 @@ angular.module('angularify.semantic.checkbox', [])
 
       if(angular.isFunction(vm.checked)) { vm.ngModel = !!vm.checked(); }
 
-      vm.classes = {
-        slider: vm.type == 'slider',
-        toggle: vm.type == 'toggle',
-
-        large: vm.size == 'large',
-        huge: vm.size == 'huge'
-      };
-
       vm.toggle = function() {
         if(angular.isFunction(vm.disabled) && vm.disabled()) return;
         vm.ngModel = !vm.ngModel;

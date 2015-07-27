@@ -71,25 +71,25 @@ describe('checkbox', function () {
         });
 
         it('should be large when size is large', function() {
-            var element = $compile('<checkbox ng-model="value" size="large">checkbox\'s label</checkbox>')($rootScope);
+            var element = $compile('<checkbox ng-model="value" class="large">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();
             expect(element.is('.large')).toBeTruthy()
         });
 
         it('should be huge when size is huge', function() {
-            var element = $compile('<checkbox ng-model="value" size="huge">checkbox\'s label</checkbox>')($rootScope);
+            var element = $compile('<checkbox ng-model="value" class="huge">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();
             expect(element.is('.huge')).toBeTruthy()
         });
 
         it('should be slider when type is slider', function() {
-            var element = $compile('<checkbox ng-model="value" type="slider">checkbox\'s label</checkbox>')($rootScope);
+            var element = $compile('<checkbox ng-model="value" class="slider">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();
             expect(element.is('.slider')).toBeTruthy()
         });
 
         it('should be toggle when type is toggle', function() {
-            var element = $compile('<checkbox ng-model="value" type="toggle">checkbox\'s label</checkbox>')($rootScope);
+            var element = $compile('<checkbox ng-model="value" class="toggle">checkbox\'s label</checkbox>')($rootScope);
             $rootScope.$digest();
             expect(element.is('.toggle')).toBeTruthy()
         });
