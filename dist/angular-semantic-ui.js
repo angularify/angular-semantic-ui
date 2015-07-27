@@ -141,8 +141,6 @@ angular.module('angularify.semantic.checkbox', [])
     replace: true,
     transclude: true,
     scope: {
-      type: '@',
-      size: '@',
       checked: '&?',
       disabled: '&?',
       ngModel: '=ngModel'
