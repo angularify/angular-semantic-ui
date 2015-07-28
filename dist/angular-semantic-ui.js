@@ -135,105 +135,40 @@ angular.module('angularify.semantic.accordion', [])
 'use strict';
 
 angular.module('angularify.semantic.checkbox', [])
-
 .directive('checkbox', function() {
   return {
     restrict: 'E',
     replace: true,
     transclude: true,
     scope: {
-      type: "@",
-      size: "@",
-      checked: "@",
-      disabled: "@",
-      model: '=ngModel'
+      checked: '&?',
+      disabled: '&?',
+      ngModel: '=ngModel'
     },
-    template: "<div class=\"{{checkbox_class}}\">" +
-      "<input type=\"checkbox\">" +
-      "<label ng-click=\"click_on_checkbox()\" ng-transclude></label>" +
-      "</div>",
-    link: function(scope, element, attrs, ngModel) {
+    controller: function() {
+      var vm = this;
 
-      //
-      // set up checkbox class and type
-      //
-      if (scope.type == 'standard' || scope.type === undefined) {
-        scope.type = 'standard';
-        scope.checkbox_class = 'ui checkbox';
-      } else if (scope.type == 'slider') {
-        scope.type = 'slider';
-        scope.checkbox_class = 'ui slider checkbox';
-      } else if (scope.type == 'toggle') {
-        scope.type = 'toggle';
-        scope.checkbox_class = 'ui toggle checkbox';
-      } else {
-        scope.type = 'standard';
-        scope.checkbox_class = 'ui checkbox';
+      // TODO: assert this is usefull ?
+      // if(angular.isUndefined(vm.ngModel)) { vm.ngModel = !!vm.ngModel; }
+
+      if(angular.isFunction(vm.checked)) { vm.ngModel = !!vm.checked(); }
+
+      vm.toggle = function() {
+        if(angular.isFunction(vm.disabled) && vm.disabled()) return;
+        vm.ngModel = !vm.ngModel;
       }
-
-      //
-      // set checkbox size
-      //
-      if (scope.size == 'large') {
-        scope.checkbox_class = scope.checkbox_class + ' large';
-      } else if (scope.size == 'huge') {
-        scope.checkbox_class = scope.checkbox_class + ' huge';
-      }
-
-      //
-      // set checked/unchecked
-      //
-      if (scope.checked == 'false' || scope.checked === undefined) {
-        scope.checked = false;
-      } else {
-        scope.checked = true;
-        element.children()[0].setAttribute('checked', '');
-      }
-
-      //
-      // check if the parameter disabled is available
-      //
-      if (scope.disabled == 'disabled') {
-        scope.checkbox_class += ' disabled';
-      }
-
-      //
-      // Click handler
-      //
-      element.bind('click', function() {
-        scope.$apply(function() {
-          if (scope.disabled === undefined) {
-            if (scope.checked === true) {
-              scope.checked = true;
-              scope.model = false;
-              element.children()[0].removeAttribute('checked');
-            } else {
-              scope.checked = true;
-              scope.model = true;
-              element.children()[0].setAttribute('checked', 'true');
-            }
-          }
-        });
-      });
-
-      //
-      // Watch for ng-model
-      //
-      scope.$watch('model', function(val) {
-        if (val === undefined)
-          return;
-
-        if (val === true) {
-          scope.checked = true;
-          element.children()[0].setAttribute('checked', 'true');
-        } else {
-          scope.checked = false;
-          element.children()[0].removeAttribute('checked');
-        }
-      });
-    }
+    },
+    controllerAs: 'vm',
+    bindToController: true,
+    require: 'ngModel',
+    template: '<div class="ui checkbox">' +
+      '<input type="checkbox" ng-model="vm.ngModel" ng-disabled="vm.disabled()"/>' +
+      '<label ng-click="vm.toggle()" ng-transclude></label>' +
+      '</div>',
+    link: function() { }
   };
 });
+
 'use strict';
 
 angular.module('angularify.semantic.dimmer', [])

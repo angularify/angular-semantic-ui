@@ -32,9 +32,9 @@
   ],
   "dependencies": {
     "angular": "latest",
-    "angular-mocks" : "latest",
     "semantic": "latest"
   },
   "devDependencies": {
+    "angular-mocks" : "latest"
   }
 }
