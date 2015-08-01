@@ -35,6 +35,7 @@
     "semantic": "latest"
   },
   "devDependencies": {
-    "angular-mocks" : "latest"
+    "angular-mocks": "latest",
+    "ng-describe": "~1.1.0"
   }
 }

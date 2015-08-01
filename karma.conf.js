@@ -6,6 +6,7 @@ files = [
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/angular/angular.min.js',
   'bower_components/angular-mocks/angular-mocks.js',
+  'bower_components/ng-describe/dist/ng-describe.js',
   'src/**/*.js',
 ];
 

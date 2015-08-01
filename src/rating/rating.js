@@ -12,13 +12,14 @@ angular.module('angularify.semantic.rating', [])
       interactive: '=',
       clearable: '='
     },
-    controller: function($scope) {
+    controller: function() {
       var vm = this;
 
       if(!vm.max) vm.max = 5;
-      if(!+vm.rate) vm.rate = 0;
-      if(vm.rate > vm.max ) vm.rate = vm.max;
+      if(!+vm.ngModel) vm.ngModel = 0;
+      if(+vm.ngModel > vm.max ) vm.ngModel = +vm.max;
       if(vm.interactive == undefined) vm.interactive = true;
+      if(vm.max == 1 && vm.clearable == undefined) vm.clearable = true;
 
       vm.setRate = function(rate) {
         if (vm.clearable && rate == +vm.ngModel) {
