@@ -20,6 +20,10 @@ angular.module('angularify.semantic.modal', [])
           }, function (modelValue){
             element.modal(modelValue ? 'show' : 'hide');
           });
+          scope.$on('$destroy', function() {
+            element.modal('hide');
+            element.remove();
+          });
         }
     }
 });
