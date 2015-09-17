@@ -3,10 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <title>Semantic UI + Angular.JS</title>
-  <link href="../../../bower_components/semantic/build/packaged/css/semantic.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="../../../bower_components/semantic/dist/semantic.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body ng-controller="RootCtrl">
-    <rating id="my-rating" size="large" type="heart" ng-model="rating"></rating>
+    <rating class="massive heart" ng-model="rate" max="6" on-rate="rated(rate);"></rating>
+    <p>Rate is {{ rate }}.</p>
+    <rating class="massive heart" ng-model="clearable_rate" clearable="true"></rating>
+    <p>Rate is {{ clearable_rate }}.</p>
+    <rating class="massive heart" ng-model="fixed_rate" interactive="false"></rating>
+    <p>Rate is {{ fixed_rate }}.</p>
     <script src="../../../bower_components/angular/angular.min.js" type="text/javascript"></script>
     <script src="../../angularify.semantic.js" type="text/javascript"></script>
     <script src="../rating.js" type="text/javascript"></script>
