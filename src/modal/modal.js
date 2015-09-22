@@ -7,6 +7,7 @@ angular.module('angularify.semantic.modal', [])
         restrict: 'E',
         replace: true,
         transclude: true,
+        scope: false,
         require: 'ngModel',
         template: '<div class="ui modal" ng-transclude></div>',
         link: function (scope, element, attrs, ngModel) {          
