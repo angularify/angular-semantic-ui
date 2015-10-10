@@ -14,7 +14,7 @@ Usage
   <br/>
   <checkbox ng-model="cc">User</checkbox>
   <br/>
-  <checkbox ng-model="dd" disabled="disabled">isActive</checkbox>
+  <checkbox ng-model="dd" disabled="true">isActive</checkbox>
 </div>
 ```
 
@@ -22,7 +22,7 @@ Usage
 
   * `class / ng-class`:   - `standard` || `slider` || `toggle` || `large` || `huge` || `undefined` - the style of checkbox;
   * `checked` - `true` || `false`, checked checkbox or not;
-  -	`disabled` - `disabled`, optional if the checkbox is disabled or not;
+  -	`disabled` - `true || false`, optional if the checkbox is disabled or not;
   * `ng-model`   - angular model.
 
 Contribution
