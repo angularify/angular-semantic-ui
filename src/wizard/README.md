@@ -18,7 +18,7 @@ Usage
         <div class="ui input">
           <input type="text">
         </div>
-      <button type="submit" class="ui button" wd-next>Next</button>
+      <button type="submit" class="ui button" wz-next>Next</button>
     </form>
   </wizard-pane>
   <wizard-pane title="Step2">
@@ -27,8 +27,8 @@ Usage
         <div class="ui input">
           <input type="text">
         </div>
-      <button type="submit" class="ui button" wd-finish>Finish</button>
-      <button type="submit" class="ui button" wd-previous>Previous</button>
+      <button type="submit" class="ui button" wz-finish>Finish</button>
+      <button type="submit" class="ui button" wz-previous>Previous</button>
     </form>
   </wizard-pane>
 </wizard>
