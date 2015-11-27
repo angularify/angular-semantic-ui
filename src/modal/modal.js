@@ -15,6 +15,15 @@ angular.module('angularify.semantic.modal', [])
               ngModel.$setViewValue(false);
             }
           });
+	  var options = {
+                onHide: function () {
+                    ngModel.$setViewValue(false);
+              }
+          };
+          if (scope.additionalOptions != undefined) {
+              for (var attrname in scope.additionalOptions) { options[attrname] = scope.additionalOptions[attrname]; }
+          }
+          element.modal(options);
           scope.$watch(function () {
             return ngModel.$modelValue;
           }, function (modelValue){
