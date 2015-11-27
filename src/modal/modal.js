@@ -9,12 +9,16 @@ angular.module('angularify.semantic.modal', [])
         transclude: true,
         require: 'ngModel',
         template: '<div class="ui modal" ng-transclude></div>',
-        link: function (scope, element, attrs, ngModel) {          
-          element.modal({
+        link: function (scope, element, attrs, ngModel) {
+	      var options = {
             onHide: function () {
-              ngModel.$setViewValue(false);
+                ngModel.$setViewValue(false);
             }
-          });
+          };
+          if (scope.additionalOptions != undefined) {
+              for (var attrname in scope.additionalOptions) { options[attrname] = scope.additionalOptions[attrname]; }
+          }
+          element.modal(options);
           scope.$watch(function () {
             return ngModel.$modelValue;
           }, function (modelValue){
