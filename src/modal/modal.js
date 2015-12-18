@@ -8,8 +8,15 @@ angular.module('angularify.semantic.modal', [])
         replace: true,
         transclude: true,
         require: 'ngModel',
-        template: '<div class="ui modal" ng-transclude></div>',
-        link: function (scope, element, attrs, ngModel) {          
+        scope: {
+            class: '@'
+        },
+        template: '<div class="{{modal_class}}" ng-transclude></div>',
+        link: function (scope, element, attrs, ngModel) {
+          scope.modal_class = 'ui modal';
+          if (scope.class !== undefined)
+              scope.modal_class += ' '+scope.class;
+
           element.modal({
             onHide: function () {
               ngModel.$setViewValue(false);
