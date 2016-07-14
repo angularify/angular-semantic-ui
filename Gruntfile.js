@@ -38,15 +38,11 @@ module.exports = function(grunt) {
             }
         },
         karma: {
+          unit: {
             options: {
-                configFile: 'karma.conf.js'
-            },
-            watch: {
-                background: true
-            },
-            continuous: {
-                singleRun: true
-            },
+              configFile: 'karma.conf.js'
+            }
+          }
         },
         watch: {
             javascript: {
