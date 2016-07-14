@@ -210,7 +210,7 @@ angular.module('angularify.semantic.dimmer', [])
             //
             scope.$watch('model', function(val){
                 if (val == false || val == undefined)
-                    return;
+                    scope.dimmer_class = 'ui page dimmer';
                 else
                     scope.dimmer_class = 'ui page active dimmer';
             });
@@ -393,6 +393,10 @@ angular.module('angularify.semantic.modal', [])
             return ngModel.$modelValue;
           }, function (modelValue){
             element.modal(modelValue ? 'show' : 'hide');
+          });
+          scope.$on('$destroy', function() {
+            element.modal('hide');
+            element.remove();
           });
         }
     }
