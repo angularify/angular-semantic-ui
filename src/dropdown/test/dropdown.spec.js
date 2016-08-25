@@ -55,6 +55,27 @@ describe('dropdown', function () {
 
   }));
 
+  it('should add classes to selected item', inject(function($compile, $rootScope) {
+      scope.$apply(function() {
+        scope.dropdown_items = {'item1': 'Cool item1',
+                                'item2': 'Cool item2'};
+      });
+
+      var dropdown = element.find('.dropdown');
+      dropdown.click();
+
+      var option1 = element.find('.menu > div.item').eq(0);
+      var option2 = element.find('.menu > div.item').eq(1);
+
+      option1.click()
+      expect(option1.is('.active, .selected')).toBe(true);
+      expect(option2.is('.active, .selected')).toBe(false);
+
+      option2.click()
+      expect(option1.is('.active, .selected')).toBe(false);
+      expect(option2.is('.active, .selected')).toBe(true);
+  }))
+
   it('should change element header when user choose option', inject(function($compile, $rootScope) {
     scope.$apply(function() {
       scope.dropdown_items = {'item1': 'Cool item1',
