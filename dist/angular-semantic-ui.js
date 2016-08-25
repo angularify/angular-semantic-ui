@@ -210,7 +210,7 @@ angular.module('angularify.semantic.dimmer', [])
             //
             scope.$watch('model', function(val){
                 if (val == false || val == undefined)
-                    return;
+                    scope.dimmer_class = 'ui page dimmer';
                 else
                     scope.dimmer_class = 'ui page active dimmer';
             });
@@ -264,6 +264,10 @@ angular.module('angularify.semantic.dropdown', [])
           $scope.text_class = 'default text';
         }
       };
+
+      this.is_active = function(value) {
+        return $scope.model === value;
+      }
 
     }
   ])
@@ -339,7 +343,7 @@ angular.module('angularify.semantic.dropdown', [])
       title: '=title',
       value: '=value'
     },
-    template: '<div class="item" ng-transclude>{{ item_title }}</div>',
+    template: '<div class="item" ng-class="active_class()" ng-transclude>{{ item_title }}</div>',
     link: function(scope, element, attrs, DropDownController) {
 
       // Check if title= was set... if not take the contents of the dropdown-group tag
@@ -353,6 +357,12 @@ angular.module('angularify.semantic.dropdown', [])
         scope.item_value = attrs.value || scope.item_title;
       } else {
         scope.item_value = scope.value;
+      }
+
+      scope.active_class = function(value) {
+        if (DropDownController.is_active(scope.item_value)) {
+          return "selected active";
+        }
       }
 
       // Keep this option
@@ -393,6 +403,10 @@ angular.module('angularify.semantic.modal', [])
             return ngModel.$modelValue;
           }, function (modelValue){
             element.modal(modelValue ? 'show' : 'hide');
+          });
+          scope.$on('$destroy', function() {
+            element.modal('hide');
+            element.remove();
           });
         }
     }

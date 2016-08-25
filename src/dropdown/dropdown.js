@@ -45,6 +45,10 @@ angular.module('angularify.semantic.dropdown', [])
         }
       };
 
+      this.is_active = function(value) {
+        return $scope.model === value;
+      }
+
     }
   ])
 
@@ -119,7 +123,7 @@ angular.module('angularify.semantic.dropdown', [])
       title: '=title',
       value: '=value'
     },
-    template: '<div class="item" ng-transclude>{{ item_title }}</div>',
+    template: '<div class="item" ng-class="active_class()" ng-transclude>{{ item_title }}</div>',
     link: function(scope, element, attrs, DropDownController) {
 
       // Check if title= was set... if not take the contents of the dropdown-group tag
@@ -133,6 +137,12 @@ angular.module('angularify.semantic.dropdown', [])
         scope.item_value = attrs.value || scope.item_title;
       } else {
         scope.item_value = scope.value;
+      }
+
+      scope.active_class = function(value) {
+        if (DropDownController.is_active(scope.item_value)) {
+          return "selected active";
+        }
       }
 
       // Keep this option
